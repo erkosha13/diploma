@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  .settings {
+    display: flex;
+    gap: 30px;
+  }
+}
