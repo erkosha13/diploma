@@ -1,0 +1,38 @@
+.footer {
+  background-color: rgb(0, 0, 0);
+  height: 300px;
+
+  .footerContent {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-direction: row;
+    color: whitesmoke;
+
+    width: 80%;
+
+    .footerCards {
+      h2 {
+        cursor: pointer;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+        cursor: pointer;
+        p {
+          margin: 0;
+        }
+      }
+
+      .footerLinks {
+        display: flex;
+        gap: 15px;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ html {
   scroll-behavior: smooth;
 
   body {
-    font-family: "Playfair Display", serif;
+    font-family: "MuseoModerno", sans-serif;
     font-optical-sizing: auto;
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
@@ -33,12 +33,27 @@ html {
   .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
+    align-items: center;
     color: rgb(0, 0, 0);
-    background-color: #fbfafa;
-    gap: 30px;
-    margin: 0 40px;
+    margin: 0 auto;
+
+    width: 1280px;
+    height: 100%;
+  }
+
+  h1{
+    font-size: 72px;
+    margin: 0;
+  }
+
+  h2{
+    font-size: 34px;
+    margin: 0;
+  }
+
+  p{
+    font-size: 18px;
+    margin: 0;
   }
 }
