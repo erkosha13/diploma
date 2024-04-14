@@ -1,6 +1,11 @@
+import React from 'react';
 import s from "./Footer.module.scss";
 
-export default function FooterForMainPage() {
+import Instagram from "../../assets/icons/instagram.svg";
+import Telegram from "../../assets/icons/telegram.svg";
+import Linkedin from "../../assets/icons/linkedin.svg";
+
+export default function Footer() {
   return (
     <div className={s.footer}>
       <div className="container">
@@ -12,13 +17,14 @@ export default function FooterForMainPage() {
                 <p>Features</p>
               </li>
               <li>
-                <p>Case studies</p>
+                <p>Case studies</p>{" "}
               </li>
               <li>
                 <p>Book Demo</p>
               </li>
             </ul>
           </div>
+          <span></span>
           <div className={s.footerCards}>
             <h2>About</h2>
             <ul>
@@ -33,6 +39,7 @@ export default function FooterForMainPage() {
               </li>
             </ul>
           </div>
+          <span></span>
           <div className={s.footerCards}>
             <h2>Community</h2>
             <ul>
@@ -47,6 +54,7 @@ export default function FooterForMainPage() {
               </li>
             </ul>
           </div>
+          <span></span>
           <div className={s.footerCards}>
             <h2>LOGO</h2>
             <ul>
@@ -58,9 +66,9 @@ export default function FooterForMainPage() {
               </li>
             </ul>
             <div className={s.footerLinks}>
-              <p>in</p>
-              <p>tg</p>
-              <p>inst</p>
+              <img src={Linkedin} alt="Linkedin" />
+              <img src={Telegram} alt="Telegram" />
+              <img src={Instagram} alt="Instagram" />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 .header {
   height: 105px;
-  box-shadow: inset 0 -1px 0 0 (black);
+  box-shadow: inset 0 -1px 0 0 black;
+
   .navBar {
     display: flex;
     align-items: center;
@@ -16,14 +17,48 @@
       height: 105px;
       border-right: 1px solid #000000;
 
-      p{
+      p {
+        background: linear-gradient(
+          to right,
+          rgb(0, 120, 194) 15%,
+          rgb(0, 71, 255) 50%,
+          rgb(132, 83, 210) 90%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+
+        
         padding-right: 15px;
+        margin: 0;
       }
     }
-  }
 
-  .settings {
-    display: flex;
-    gap: 30px;
+    .settings {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+
+      .lang {
+        position: relative;
+        width: 100px;
+
+        .span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        img {
+          width: 20px;
+          height: auto;
+          margin-right: 5px;
+        }
+      }
+
+      .registration {
+      }
+    }
   }
 }

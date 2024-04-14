@@ -5,7 +5,18 @@ import { ConfigProvider } from "antd";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ConfigProvider>
+  <ConfigProvider
+    theme={{
+      components: {
+        Select : {
+          colorPrimary: "#adadad",
+          colorTextBase: "#000",
+          multipleItemBorderColorDisabled: 'transparent',
+          algorithm: true,
+        },
+      },
+    }}
+  >
     <BrowserRouter>
       <App />
     </BrowserRouter>

@@ -1,0 +1,32 @@
+.button {
+  background: linear-gradient(
+    to right,
+    rgb(0, 120, 194) 15%,
+    rgb(0, 71, 255) 50%,
+    rgb(132, 83, 210) 90%
+  );
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background: white;
+  background: linear-gradient(
+    to right,
+    rgb(0, 120, 194) 15%,
+    rgb(0, 71, 255) 50%,
+    rgb(132, 83, 210) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.button:active {
+  color: #000;
+}
