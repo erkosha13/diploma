@@ -28,17 +28,17 @@ html {
 }
 
 :root {
-  background-color: #c0c1a9;
+  background-color: #fbfafa;
 
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
     padding: 20px;
-    background-color: rgb(77, 77, 77);
-    color: white;
+    color: rgb(0, 0, 0);
+    background-color: #fbfafa;
     gap: 30px;
+    margin: 0 40px;
   }
 }
