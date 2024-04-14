@@ -1,10 +1,12 @@
+import React from "react";
+import { observer } from "mobx-react-lite";
+
 import HeaderForMainPage from "../../components/Header/headerForMainPage";
-import Diploma from "../../assets/img/classic.png";
-
+import Footer from "../../components/Footer/Footer";
 import s from "./mainPage.module.scss";
-import FooterForMainPage from "../../components/Footer/Footer";
+import imageStore from "../../store/store-main";
 
-export default function MainPage() {
+const MainPage = observer(() => {
   return (
     <>
       <HeaderForMainPage />
@@ -21,11 +23,13 @@ export default function MainPage() {
             </p>
           </div>
           <div className={s.mainImg}>
-            <img src={Diploma} alt="diploma"></img>
+            <img src={imageStore.getCurrentImage()} alt="diploma"></img>
           </div>
         </div>
       </div>
-      <FooterForMainPage />
+      <Footer />
     </>
   );
-}
+});
+
+export default MainPage;
