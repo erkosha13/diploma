@@ -15,15 +15,16 @@ const MainPage = observer(() => {
               Уникальные <span className={s.span}>NFT</span> дипломы
             </h1>
             <p className={s.textH}>
-              Ваш университетский диплом в новом формате —{" "}
-              <span className={s.span}>NFT</span>. Безопасное, современное,
+              Ваш университетский диплом в новом формате —
+              <span className={s.span}> NFT</span>. Безопасное, современное,
               надежное хранилище для вашего достижения.
               <blockquote className={s.quote}>
                 "Образование - это то, что остается после того, как все забыто."
                 - Альберт Эйнштейн
               </blockquote>
               <span className={s.quoteSpan}>
-                Сделайте свое образование вечным с помощью NFT-диплома.
+                Сделайте свое образование вечным с помощью
+                <span className={s.span}> NFT</span> -диплома.
               </span>
             </p>
           </div>

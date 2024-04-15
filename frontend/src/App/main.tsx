@@ -8,10 +8,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <ConfigProvider
     theme={{
       components: {
-        Select : {
+        Select: {
+          colorBorder: 'none',
           colorPrimary: "#adadad",
           colorTextBase: "#000",
-          multipleItemBorderColorDisabled: 'transparent',
           algorithm: true,
         },
       },
