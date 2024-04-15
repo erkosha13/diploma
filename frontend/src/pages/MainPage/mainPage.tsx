@@ -3,6 +3,7 @@ import HeaderForMainPage from "../../components/Header/headerForMainPage";
 import Footer from "../../components/Footer/Footer";
 import s from "./mainPage.module.scss";
 import imageStore from "../../store/store-main";
+import FourStages from "./fourStages/fourStages";
 
 const MainPage = observer(() => {
   return (
@@ -12,11 +13,12 @@ const MainPage = observer(() => {
         <div className={s.mainBlock}>
           <div className={s.textBlock}>
             <h1>
-              Уникальные <span className={s.span}>NFT</span> дипломы
+              Уникальные <span>NFT</span> дипломы
             </h1>
             <p className={s.textH}>
               Ваш университетский диплом в новом формате —
               <span className={s.span}> NFT</span>. Безопасное, современное,
+
               надежное хранилище для вашего достижения.
               <blockquote className={s.quote}>
                 "Образование - это то, что остается после того, как все забыто."
@@ -33,6 +35,7 @@ const MainPage = observer(() => {
           </div>
         </div>
       </div>
+      <FourStages />
       <Footer />
     </>
   );
