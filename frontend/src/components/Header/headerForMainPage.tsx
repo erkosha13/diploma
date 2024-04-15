@@ -1,64 +1,30 @@
 import s from "./headerForMainPage.module.scss";
-import { Select } from "antd";
 
-import KZ from "../../assets/icons/kk.svg";
-import RU from "../../assets/icons/ru.svg";
-import EN from "../../assets/icons/en.svg";
 import { Button } from "../../shared/ui/Button/Button";
-
+import { Link, useLocation } from "react-router-dom";
+import LanguageSelect from "./components/LanguageSelect/LanguageSelect";
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
 export default function HeaderForMainPage() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
     <div className={s.header}>
       <div className="container">
         <div className={s.navBar}>
           <div className={s.logo}>
-            <p>LOGO</p>
+            <Link to="/">
+              <p>LOGO</p>
+            </Link>
           </div>
           <div className={s.settings}>
             <div className={s.lang}>
-              <Select
-                defaultValue="KZ"
-                style={{ width: 85 }}
-                onChange={handleChange}
-                options={[
-                  {
-                    label: <span>Language</span>,
-                    title: "manager",
-                    options: [
-                      {
-                        label: (
-                          <span className={s.labelImg}>
-                            <img src={KZ} alt="KZ"></img>KZ
-                          </span>
-                        ),
-                        value: "KZ",
-                      },
-                      {
-                        label: (
-                          <span>
-                            <img src={RU} alt="RU"></img>RU
-                          </span>
-                        ),
-                        value: "RU",
-                      },
-                      {
-                        label: (
-                          <span>
-                            <img src={EN} alt="EN"></img>EN
-                          </span>
-                        ),
-                        value: "EN",
-                      },
-                    ],
-                  },
-                ]}
-              />
+              <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button>Sign Up</Button>
+              <Button>{isHomePage ? "Sign Up" : "Home"}</Button>
             </div>
           </div>
         </div>

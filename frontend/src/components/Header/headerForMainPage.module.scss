@@ -14,23 +14,29 @@
     .logo {
       display: flex;
       align-items: center;
-      height: 105px;
+      height: 100%;
       border-right: 1px solid #000000;
 
-      p {
-        background: linear-gradient(
-          to right,
-          rgb(0, 120, 194) 15%,
-          rgb(0, 71, 255) 50%,
-          rgb(132, 83, 210) 90%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
+      padding-left: 150px;
 
-        padding-right: 15px;
-        margin: 0;
+      a {
+        text-decoration: none;
+
+        p {
+          background: linear-gradient(
+            to right,
+            rgb(0, 120, 194) 15%,
+            rgb(0, 71, 255) 50%,
+            rgb(132, 83, 210) 90%
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+
+          padding-right: 15px;
+          margin: 0;
+        }
       }
     }
 
@@ -55,8 +61,11 @@
           margin-right: 5px;
         }
       }
-
-   
+    }
+    .logo,
+    .settings {
+      height: 100%;
+      align-items: center;
     }
   }
 }
