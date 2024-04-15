@@ -56,4 +56,16 @@ html {
     font-size: 18px;
     margin: 0;
   }
+  span {
+    background: linear-gradient(
+      to right,
+      rgb(0, 120, 194) 15%,
+      rgb(0, 71, 255) 50%,
+      rgb(132, 83, 210) 90%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
