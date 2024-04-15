@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 
 import { Button } from "../../shared/ui/Button/Button";
-import { Link } from "react-router-dom";
+
 import LanguageSelect from "../LanguageSelect/LanguageSelect";
 import { Modal } from "../../shared/ui/modal/Modal";
 
 import s from "./headerForMainPage.module.scss";
 
+import { Link, useLocation } from "react-router-dom";
+
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
 
-const HeaderForMainPage: React.FC = observer(() => {
+export const HeaderForMainPage: React.FC = observer(() => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -37,7 +41,9 @@ const HeaderForMainPage: React.FC = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button onClick={openModal}>Sign Up</Button>
+              <Button onClick={openModal}>
+                {isHomePage ? "Sign Up" : "Home"}
+              </Button>
             </div>
           </div>
         </div>
@@ -51,5 +57,3 @@ const HeaderForMainPage: React.FC = observer(() => {
     </div>
   );
 });
-
-export default HeaderForMainPage;

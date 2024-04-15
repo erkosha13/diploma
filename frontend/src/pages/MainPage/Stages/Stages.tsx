@@ -22,7 +22,7 @@ export const Stages = () => {
               <h1>
                 <span>03</span>
               </h1>
-              <h4>Пройдите в личный кабинет</h4>
+              <h4>Настройте личный кабинет</h4>
             </div>
             <div className={s.stageCard}>
               <h1>
