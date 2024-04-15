@@ -20,6 +20,20 @@
       margin-bottom: 30px;
     }
 
+    .quote {
+      font-style: italic;
+      color: #666;
+      margin-top: 20px;
+      padding-left: 20px;
+      border-left: 4px solid #ddd;
+    }
+
+    .quoteSpan {
+      font-size: 16px;
+      color: gray;
+      padding-left: 39px;
+    }
+
     .span {
       background: linear-gradient(
         to right,
@@ -37,8 +51,8 @@
   .mainImg {
     margin-top: 30px;
     img {
-      border-radius: 30px ;
-      
+      border-radius: 30px;
+
       width: 100%;
       max-width: 500px;
     }
