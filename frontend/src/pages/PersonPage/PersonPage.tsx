@@ -3,6 +3,18 @@ import s from "./PersonPage.module.scss";
 import { Skeleton } from "antd";
 
 const PersonPage = () => {
+  // Рандомная информация о человеке
+  const personInfo = {
+    name: "Алексей Петров",
+    university: "Университет имени Ивана Иванова",
+    age: 30,
+    city: "Москва, Россия",
+    email: "example@example.com",
+    phone: "+79123456789",
+    address: "ул. Пушкина, д. Колотушкина, Москва, Россия",
+    diplomas: ["Example Diploma 1", "Example Diploma 2", "Example Diploma 3"],
+  };
+
   return (
     <div className={s.personPage}>
       <div className="container">
@@ -11,16 +23,16 @@ const PersonPage = () => {
             <div className={s.personInfo}>
               <div className={s.personName}>
                 <Skeleton.Image />
-                <p> Уалихан Еркебулан</p>
-                <p> Qamalladin University</p>
-                <p>Age: 25</p>
-                <p>City: Almaty, Kazakhstan</p>
+                <p>{personInfo.name}</p>
+                <p>{personInfo.university}</p>
+                <p>Age: {personInfo.age}</p>
+                <p>City: {personInfo.city}</p>
               </div>
               <div className={s.contactInfo}>
                 <h2>Contacts </h2>
-                <p>Email: example@example.com</p>
-                <p>Phone: +1234567890</p>
-                <p>Address: 123 Main Street, City, Country</p>
+                <p>Email: {personInfo.email}</p>
+                <p>Phone: {personInfo.phone}</p>
+                <p>Address: {personInfo.address}</p>
               </div>
             </div>
           </div>
@@ -30,9 +42,10 @@ const PersonPage = () => {
                 <h2>Diplomas</h2>
               </div>
               <div className={s.diplomaList}>
-                <p>Example Diploma 1</p>
-                <p>Example Diploma 2</p>
-                <p>Example Diploma 3</p>
+                {/* Отображаем рандомные дипломы */}
+                {personInfo.diplomas.map((diploma, index) => (
+                  <p key={index}>{diploma}</p>
+                ))}
               </div>
             </div>
           </div>
