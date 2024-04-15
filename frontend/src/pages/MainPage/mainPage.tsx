@@ -1,7 +1,8 @@
 import { observer } from "mobx-react-lite";
 import s from "./mainPage.module.scss";
 import imageStore from "../../store/store-main";
-import FourStages from "./fourStages/fourStages";
+
+import Stages from "./Stages/Stages";
 
 const MainPage = observer(() => {
   return (
@@ -31,7 +32,7 @@ const MainPage = observer(() => {
           </div>
         </div>
       </div>
-      <FourStages />
+      <Stages />
     </>
   );
 });

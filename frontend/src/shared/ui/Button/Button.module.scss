@@ -8,6 +8,12 @@
   border-radius: 8px;
   transition-duration: 0.4s;
   overflow: hidden;
+  background: linear-gradient(
+    to right,
+    rgb(0, 120, 194) 15%,
+    rgb(0, 71, 255) 50%,
+    rgb(132, 83, 210) 90%
+  );
 
   &:hover::before {
     top: 50%;
