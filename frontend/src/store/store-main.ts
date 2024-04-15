@@ -27,10 +27,10 @@ class ImageStore {
       this.setCurrentImageIndex(
         (this.currentImageIndex + 1) % this.images.length
       );
-    }, 3000); // Интервал в миллисекундах (здесь 5000 мс = 5 секунд)
+    }, 3000);
   }
 
-  setCurrentImageIndex(index) {
+  setCurrentImageIndex(index: number) {
     this.currentImageIndex = index;
   }
 
