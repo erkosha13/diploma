@@ -1,8 +1,11 @@
+// src/stores/LoginStore.ts
 import { makeAutoObservable } from "mobx";
-type NavigateFunction = (path: string) => void;
+import { modalStore } from "./modal-store";
+import { IUserData } from "../shared/types/IUserData";
 
-class InputStore {
-  inpData = {
+class LoginStore {
+  modalStore;
+  inpData: IUserData = {
     login: "",
     password: "",
   };
@@ -14,9 +17,10 @@ class InputStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.modalStore = modalStore;
   }
 
-  updateInpData = (key: string, value: string) => {
+  updateInpData = (key: keyof IUserData, value: string) => {
     this.inpDataErr = {
       ...this.inpDataErr,
       [key + "Err"]: "",
@@ -27,27 +31,20 @@ class InputStore {
     };
   };
 
-  clickHandler = (navigateCallback: NavigateFunction) => {
-    this.validateData();
-    if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
-    navigateCallback("/person");
+  validateData = () => {
+    if (!this.inpData.login)
+      this.inpDataErr.loginErr = "Логин не может быть пустым";
+    if (!this.inpData.password)
+      this.inpDataErr.passwordErr = "Пароль не может быть пустым";
   };
 
-  validateData = () => {
-    if (this.inpData.login === "")
-      this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
-      this.inpDataErr.loginErr = "Некорректный логин";
-
-    if (this.inpData.password === "")
-      this.inpDataErr.passwordErr = "Пароль не может быть пустым";
-    else if (
-      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
-        this.inpData.password
-      )
-    )
-      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
+  clickHandler = (navigateCallback: (path: string) => void) => {
+    this.validateData();
+    if (Object.values(this.inpDataErr).every((i) => i === "")) {
+      navigateCallback("/person");
+      this.modalStore.closeModal();
+    }
   };
 }
 
-export const inputStore = new InputStore();
+export const loginStore = new LoginStore();

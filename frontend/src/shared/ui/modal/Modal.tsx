@@ -1,22 +1,31 @@
-import { useState } from "react";
+// Modal.tsx
+import React from "react";
+import { observer } from "mobx-react-lite";
+import { modalStore } from "../../../store/modal-store"; // Импорт store
 import { Login } from "../../../components/FormRegist/Login/Login";
 import { Signup } from "../../../components/FormRegist/Signup/Signup";
-import s from "./Modal.module.scss";
 import { Button } from "../Button/Button";
+import s from "./Modal.module.scss";
 
 interface ModalProps {
   onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ onClose }) => {
-  const [showLogin, setShowLogin] = useState(false);
+const Modal: React.FC<ModalProps> = observer(({ onClose }) => {
+  const handleClose = () => {
+    modalStore.closeModal();
+    onClose();
+  };
 
   const toggleOverlay = () => {
-    setShowLogin(!showLogin);
+    modalStore.toggleLoginSignup();
   };
 
   return (
-    <div className={s.modal}>
+    <div
+      className={s.modal}
+      style={{ display: modalStore.isVisible ? "block" : "none" }}
+    >
       <div className="container">
         <div className={s.modalContent}>
           <div className={s.modalLogin}>
@@ -28,32 +37,36 @@ export const Modal: React.FC<ModalProps> = ({ onClose }) => {
           <div
             className={s.modalOverlay}
             style={{
-              transform: showLogin ? "translateX(0)" : "translateX(100%)",
+              transform: modalStore.showLogin
+                ? "translateX(100%)"
+                : "translateX(0)",
             }}
           >
             <div
               className={s.modalOverlayLeft}
-              style={{ left: showLogin ? "25%" : "25%" }}
+              style={{ left: modalStore.showLogin ? "25%" : "25%" }}
             >
               <div className={s.modalOverlayRight} style={{ left: "0" }}></div>
-              {showLogin ? (
+              {modalStore.showLogin ? (
                 <div className={s.modalButtons}>
-                  <p>Hello Friend !</p>
-                  <Button onClick={toggleOverlay}>Login</Button>
+                  <p>Hello Friend!</p>
+                  <Button onClick={toggleOverlay}>Sign Up</Button>
                 </div>
               ) : (
                 <div className={s.modalButtons}>
-                  <p>Welcome Back !</p>
-                  <Button onClick={toggleOverlay}>Sign Up</Button>
+                  <p>Welcome Back!</p>
+                  <Button onClick={toggleOverlay}>Login</Button>
                 </div>
               )}
             </div>
           </div>
-          <button className={s.modalClose} onClick={onClose}>
+          <button className={s.modalClose} onClick={handleClose}>
             &#x2716;
           </button>
         </div>
       </div>
     </div>
   );
-};
+});
+
+export default Modal;

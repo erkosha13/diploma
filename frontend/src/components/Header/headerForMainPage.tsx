@@ -1,30 +1,22 @@
-import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
-
+import { Link } from "react-router-dom";
+import Modal from "../../shared/ui/modal/Modal";
 import { Button } from "../../shared/ui/Button/Button";
-
-import LanguageSelect from "../LanguageSelect/LanguageSelect";
-import { Modal } from "../../shared/ui/modal/Modal";
-
 import s from "./headerForMainPage.module.scss";
-
-import { Link, useLocation } from "react-router-dom";
+import { modalStore } from "../../store/modal-store";
+import LanguageSelect from "../LanguageSelect/LanguageSelect";
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
 
-export const HeaderForMainPage: React.FC = observer(() => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
+export const HeaderForMainPage = observer(() => {
+  const handleOpenModal = () => {
+    modalStore.openModal();
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const handleCloseModal = () => {
+    modalStore.closeModal();
   };
 
   return (
@@ -41,19 +33,12 @@ export const HeaderForMainPage: React.FC = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button onClick={openModal}>
-                {isHomePage ? "Sign Up" : "Home"}
-              </Button>
+              <Button onClick={handleOpenModal}>Sign Up / Log In</Button>
             </div>
           </div>
         </div>
       </div>
-      {isModalOpen && (
-        <div>
-          <div className={s.overlay} onClick={closeModal}></div>
-          <Modal onClose={closeModal}></Modal>
-        </div>
-      )}
+      {modalStore.isVisible && <Modal onClose={handleCloseModal} />}
     </div>
   );
 });

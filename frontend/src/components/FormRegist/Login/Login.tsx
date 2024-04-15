@@ -1,16 +1,17 @@
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import s from "./Login.module.scss";
-import { inputStore } from "../../../store/login-store";
 import { Button } from "../../../shared/ui/Button/Button";
+import { loginStore } from "../../../store/login-store";
+import { IUserData } from "../../../shared/types/IUserData";
 
 export const Login = observer(() => {
-  const { inpData, inpDataErr, updateInpData } = inputStore;
+  const { inpData, inpDataErr, updateInpData } = loginStore;
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (!inpDataErr.loginErr && !inpDataErr.passwordErr) {
-      inputStore.clickHandler(navigate);
+      loginStore.clickHandler(navigate);
     }
   };
 
@@ -20,7 +21,7 @@ export const Login = observer(() => {
       !inpDataErr.loginErr &&
       !inpDataErr.passwordErr
     ) {
-      inputStore.clickHandler(navigate);
+      loginStore.clickHandler(navigate);
     }
   };
 
@@ -34,7 +35,9 @@ export const Login = observer(() => {
           <input
             name="login"
             type="text"
-            onChange={(e) => updateInpData(e.target.name, e.target.value)}
+            onChange={(e) =>
+              updateInpData(e.target.name as keyof IUserData, e.target.value)
+            }
             placeholder="Username"
             value={inpData.login}
             maxLength={20}
@@ -46,8 +49,10 @@ export const Login = observer(() => {
           <input
             name="password"
             type="password"
+            onChange={(e) =>
+              updateInpData(e.target.name as keyof IUserData, e.target.value)
+            }
             placeholder="Password"
-            onChange={(e) => updateInpData(e.target.name, e.target.value)}
             value={inpData.password}
             maxLength={20}
             onKeyDown={handleKeyDown}

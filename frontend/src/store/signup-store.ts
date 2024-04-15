@@ -1,13 +1,11 @@
+// src/stores/SignUpStore.ts
 import { makeAutoObservable } from "mobx";
-type NavigateFunction = (path: string) => void;
-interface InpData {
-  login: string;
-  password: string;
-  confirmpassword: string;
-}
+import { modalStore } from "./modal-store";
+import { IUserData } from "../shared/types/IUserData";
 
 class SignUpStore {
-  inpData: InpData = {
+  modalStore;
+  inpData: IUserData = {
     login: "",
     password: "",
     confirmpassword: "",
@@ -21,9 +19,10 @@ class SignUpStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.modalStore = modalStore;
   }
 
-  updateInpData = (key: keyof InpData, value: string) => {
+  updateInpData = (key: keyof IUserData, value: string) => {
     this.inpDataErr = {
       ...this.inpDataErr,
       [key + "Err"]: "",
@@ -34,31 +33,21 @@ class SignUpStore {
     }
   };
 
-  clickHandler = (navigateCallback: NavigateFunction) => {
-    this.validateData();
-    if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
-    navigateCallback("/modal");
+  validateData = () => {
+    if (!this.inpData.login)
+      this.inpDataErr.loginErr = "Логин не может быть пустым";
+    if (!this.inpData.password)
+      this.inpDataErr.passwordErr = "Пароль не может быть пустым";
+    if (this.inpData.password !== this.inpData.confirmpassword)
+      this.inpDataErr.confirmpasswordErr = "Пароли не совпадают";
   };
 
-  validateData = () => {
-    if (this.inpData.login === "")
-      this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
-      this.inpDataErr.loginErr = "Некорретный логин";
-
-    if (this.inpData.password === "")
-      this.inpDataErr.passwordErr = "Пароль не может быть пустым";
-    else if (
-      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
-        this.inpData.password
-      )
-    )
-      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
-
-    if (this.inpData.confirmpassword === "")
-      this.inpDataErr.confirmpasswordErr = "Подтвердите пароль";
-    else if (this.inpData.confirmpassword !== this.inpData.password)
-      this.inpDataErr.confirmpasswordErr = "Пароли не совпадают";
+  clickHandler = (navigateCallback: (path: string) => void) => {
+    this.validateData();
+    if (Object.values(this.inpDataErr).every((i) => i === "")) {
+      navigateCallback("/person");
+      this.modalStore.closeModal();
+    }
   };
 }
 
