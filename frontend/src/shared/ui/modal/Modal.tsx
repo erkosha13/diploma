@@ -4,7 +4,11 @@ import { Signup } from "../../../components/FormRegist/Signup/Signup";
 import s from "./Modal.module.scss";
 import { Button } from "../Button/Button";
 
-export const Modal = () => {
+interface ModalProps {
+  onClose: () => void;
+}
+
+export const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const [showLogin, setShowLogin] = useState(false);
 
   const toggleOverlay = () => {
@@ -45,6 +49,9 @@ export const Modal = () => {
               )}
             </div>
           </div>
+          <button className={s.modalClose} onClick={onClose}>
+            &#x2716;
+          </button>
         </div>
       </div>
     </div>

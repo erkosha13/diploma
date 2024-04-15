@@ -9,6 +9,7 @@
   height: 500px;
   overflow: hidden;
   position: relative;
+  z-index: 1000;
 
   .modalLogin,
   .modalSignUp {
@@ -59,6 +60,32 @@
       p {
         font-size: 24px;
       }
+    }
+  }
+
+  .modalClose {
+    position: absolute;
+    z-index: 1000;
+    left: 93%;
+    top: 5%;
+
+    border-radius: 25%;
+    background: linear-gradient(
+      to right,
+      rgb(0, 120, 194) 15%,
+      rgb(0, 71, 255) 50%,
+      rgb(132, 83, 210) 90%
+    );
+    color: #ffffff;
+    border: none;
+
+    &:hover {
+      background: linear-gradient(
+        to right,
+        rgb(0, 120, 194) 15%,
+        rgb(0, 71, 255) 50%,
+        rgb(132, 83, 210) 90%
+      );
     }
   }
 }
