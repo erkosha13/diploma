@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import Modal from "../modal/Modal";
 import { Button } from "../../shared/ui/Button/Button";
-import s from "./headerForMainPage.module.scss";
+import s from "./header.module.scss";
 import { modalStore } from "../../store/modal-store";
 import LanguageSelect from "../LanguageSelect/LanguageSelect";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
 
-export const HeaderForMainPage = observer(() => {
+export const Header = observer(() => {
   const location = useLocation();
   const navigate = useNavigate();
   const isMainPage = location.pathname === "/";
