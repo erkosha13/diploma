@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 
-import { Button } from "antd";
+import { Button } from "../../shared/ui/Button/Button";
 import { Link } from "react-router-dom";
 import LanguageSelect from "../LanguageSelect/LanguageSelect";
 import s from "./headerForMainPage.module.scss";
@@ -27,11 +27,8 @@ const HeaderForMainPage: React.FC = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button onClick={() => modalStore.openModal("signup")}>
-                Зарегистрироваться
-              </Button>
               <Button onClick={() => modalStore.openModal("login")}>
-                Войти
+                Sign Up
               </Button>
             </div>
           </div>

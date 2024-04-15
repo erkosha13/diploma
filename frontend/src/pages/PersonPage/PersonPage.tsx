@@ -3,7 +3,6 @@ import s from "./PersonPage.module.scss";
 import { Skeleton } from "antd";
 
 const PersonPage = () => {
-  // Рандомная информация о человеке
   const personInfo = {
     name: "Алексей Петров",
     university: "Университет имени Ивана Иванова",
@@ -42,7 +41,6 @@ const PersonPage = () => {
                 <h2>Diplomas</h2>
               </div>
               <div className={s.diplomaList}>
-                {/* Отображаем рандомные дипломы */}
                 {personInfo.diplomas.map((diploma, index) => (
                   <p key={index}>{diploma}</p>
                 ))}

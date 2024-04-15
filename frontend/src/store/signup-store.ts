@@ -37,7 +37,7 @@ class SignUpStore {
   clickHandler = (navigateCallback: NavigateFunction) => {
     this.validateData();
     if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
-    navigateCallback("/login");
+    navigateCallback("/modal");
   };
 
   validateData = () => {
