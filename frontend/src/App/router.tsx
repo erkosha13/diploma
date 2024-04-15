@@ -1,5 +1,5 @@
 import Footer from "../components/Footer/Footer";
-import HeaderForMainPage from "../components/Header/headerForMainPage";
+import { HeaderForMainPage } from "../components/Header/headerForMainPage";
 import MainPage from "../pages/MainPage/mainPage";
 import PersonPage from "../pages/PersonPage/PersonPage";
 import "./router.scss";
