@@ -1,10 +1,10 @@
 // Modal.tsx
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { modalStore } from "../../../store/modal-store"; // Импорт store
-import { Login } from "../../../components/FormRegist/Login/Login";
-import { Signup } from "../../../components/FormRegist/Signup/Signup";
-import { Button } from "../Button/Button";
+import { modalStore } from "../../store/modal-store"; // Импорт store
+import { Login } from "../FormRegist/Login/Login";
+import { Signup } from "../FormRegist/Signup/Signup";
+import { Button } from "../../shared/ui/Button/Button";
 import s from "./Modal.module.scss";
 
 interface ModalProps {

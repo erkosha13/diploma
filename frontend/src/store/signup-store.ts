@@ -32,7 +32,10 @@ class SignUpStore {
       this.validateData();
     }
   };
-
+  clearData = () => {
+    this.inpData = { login: "", password: "", confirmpassword: "" };
+    this.inpDataErr = { loginErr: "", passwordErr: "", confirmpasswordErr: "" };
+  };
   validateData = () => {
     if (!this.inpData.login)
       this.inpDataErr.loginErr = "Логин не может быть пустым";
