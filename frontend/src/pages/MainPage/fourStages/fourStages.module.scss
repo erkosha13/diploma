@@ -1,12 +1,46 @@
-.blocks {
-  text-align: center;
-  padding: 20px;
-  height: 200px;
-  line-height: 50px;
-  background-color: #ffffff;
-  margin-right: 20px;
+.carouselContainer {
+  position: relative;
+  width: calc(100% - 280px);
+  overflow: hidden;
+  margin-bottom: 50px;
+  margin-left: 70px;
+  margin-right: 70px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  .contentStyle {
-    font-size: 24px;
+  .blocks {
+    text-align: center;
+    padding: 20px;
+    height: 200px;
+    line-height: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 500px;
+    border-right: 1px solid;
+
+    .contentStyle {
+      font-size: 24px;
+    }
+  }
+
+  .carousel-dots {
+    text-align: center;
+    li {
+      background: black;
+    }
+    .ant-carousel-dots-active {
+      button {
+        background: black !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .blocks {
+    padding: 10px;
+    margin-right: 70px;
   }
 }
