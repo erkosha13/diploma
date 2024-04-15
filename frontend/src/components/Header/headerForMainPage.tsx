@@ -1,20 +1,17 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
-
-import { Button } from "antd";
-import { Link } from "react-router-dom";
-import LanguageSelect from "../LanguageSelect/LanguageSelect";
 import s from "./headerForMainPage.module.scss";
-import CustomModal from "../../shared/ui/modal/modalComponent";
-import { modalStore } from "../../store/modal-store";
+
+import { Button } from "../../shared/ui/Button/Button";
+import { Link, useLocation } from "react-router-dom";
+import LanguageSelect from "../LanguageSelect/LanguageSelect";
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
+export default function HeaderForMainPage() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
-const HeaderForMainPage: React.FC = observer(() => {
   return (
     <div className={s.header}>
-      <CustomModal />
       <div className="container">
         <div className={s.navBar}>
           <div className={s.logo}>
@@ -27,18 +24,11 @@ const HeaderForMainPage: React.FC = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button onClick={() => modalStore.openModal("signup")}>
-                Зарегистрироваться
-              </Button>
-              <Button onClick={() => modalStore.openModal("login")}>
-                Войти
-              </Button>
+              <Button>{isHomePage ? "Sign Up" : "Home"}</Button>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-});
-
-export default HeaderForMainPage;
+}
