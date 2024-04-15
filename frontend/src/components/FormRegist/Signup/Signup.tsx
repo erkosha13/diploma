@@ -1,15 +1,26 @@
-import s from "./Signup.module.scss";
-
+import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Button } from "../../../shared/ui/Button/Button";
 import { signUpStore } from "../../../store/signup-store";
+import s from "./Signup.module.scss";
+import { modalStore } from "../../../store/modal-store";
+import { autorun } from "mobx";
 
 export const Signup = observer(() => {
-  const { inpData, inpDataErr, updateInpData } = signUpStore;
+  const { inpData, inpDataErr, updateInpData, clearData } = signUpStore;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const reactionCleanup = autorun(() => {
+      if (!modalStore.isVisible) {
+        clearData();
+      }
+    });
+    return () => reactionCleanup();
+  }, []);
+
   const handleClick = () => {
     signUpStore.clickHandler(navigate);
   };

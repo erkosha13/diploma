@@ -1,13 +1,25 @@
+import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import s from "./Login.module.scss";
 import { Button } from "../../../shared/ui/Button/Button";
 import { loginStore } from "../../../store/login-store";
 import { IUserData } from "../../../shared/types/IUserData";
+import { modalStore } from "../../../store/modal-store";
+import { autorun } from "mobx";
 
 export const Login = observer(() => {
-  const { inpData, inpDataErr, updateInpData } = loginStore;
+  const { inpData, inpDataErr, updateInpData, clearData } = loginStore;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const reactionCleanup = autorun(() => {
+      if (!modalStore.isVisible) {
+        clearData();
+      }
+    });
+    return () => reactionCleanup(); 
+  }, []);
 
   const handleClick = () => {
     if (!inpDataErr.loginErr && !inpDataErr.passwordErr) {

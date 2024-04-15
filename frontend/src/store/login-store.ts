@@ -30,7 +30,10 @@ class LoginStore {
       [key]: value,
     };
   };
-
+  clearData = () => {
+    this.inpData = { login: "", password: "" };
+    this.inpDataErr = { loginErr: "", passwordErr: "" };
+  };
   validateData = () => {
     if (!this.inpData.login)
       this.inpDataErr.loginErr = "Логин не может быть пустым";
