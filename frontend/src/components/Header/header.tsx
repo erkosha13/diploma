@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import Modal from "../modal/Modal";
 import { Button } from "../../shared/ui/Button/Button";
+import Backdrop from "./components/Backdrop";
 import s from "./header.module.scss";
 import { modalStore } from "../../store/modal-store";
 import LanguageSelect from "../LanguageSelect/LanguageSelect";
@@ -45,6 +46,9 @@ export const Header = observer(() => {
           </div>
         </div>
       </div>
+      {modalStore.isVisible && (
+        <Backdrop onClick={() => modalStore.closeModal()} />
+      )}
       {modalStore.isVisible && (
         <Modal onClose={() => modalStore.closeModal()} />
       )}
