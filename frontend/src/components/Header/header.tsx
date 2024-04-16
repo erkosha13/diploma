@@ -1,12 +1,9 @@
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
-import Modal from "../modal/Modal";
 import { Button } from "../../shared/ui/Button/Button";
-import Backdrop from "./components/Backdrop";
 import s from "./header.module.scss";
-import { modalStore } from "../../store/modal-store";
-import LanguageSelect from "../LanguageSelect/LanguageSelect";
 import { useLocation, useNavigate } from "react-router-dom";
+import LanguageSelect from "./components/LanguageSelect/LanguageSelect";
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
@@ -17,8 +14,8 @@ export const Header = observer(() => {
   const navigate = useNavigate();
   const isMainPage = location.pathname === "/";
 
-  const handleOpenModal = () => {
-    modalStore.openModal();
+  const handleGoToSignUp = () => {
+    navigate("/modal");
   };
 
   const handleGoHome = () => {
@@ -39,19 +36,13 @@ export const Header = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button onClick={isMainPage ? handleOpenModal : handleGoHome}>
+              <Button onClick={isMainPage ? handleGoToSignUp : handleGoHome}>
                 {isMainPage ? "Sign Up / Log In" : "Home"}
               </Button>
             </div>
           </div>
         </div>
       </div>
-      {modalStore.isVisible && (
-        <Backdrop onClick={() => modalStore.closeModal()} />
-      )}
-      {modalStore.isVisible && (
-        <Modal onClose={() => modalStore.closeModal()} />
-      )}
     </div>
   );
 });

@@ -18,7 +18,7 @@ export const Login = observer(() => {
         clearData();
       }
     });
-    return () => reactionCleanup(); 
+    return () => reactionCleanup();
   }, []);
 
   const handleClick = () => {
