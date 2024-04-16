@@ -1,7 +1,9 @@
 import Footer from "../components/Footer/Footer";
 import { Header } from "../components/Header/header";
+
 import MainPage from "../pages/MainPage/mainPage";
 import PersonPage from "../pages/PersonPage/PersonPage";
+import { LoginSignUp } from "../pages/Register/LoginSignUp";
 import "./router.scss";
 import { Route, Routes } from "react-router-dom";
 function Router() {
@@ -11,6 +13,7 @@ function Router() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path={"/person"} element={<PersonPage />} />
+        <Route path={"/modal"} element={<LoginSignUp />} />
       </Routes>
       <Footer />
     </>

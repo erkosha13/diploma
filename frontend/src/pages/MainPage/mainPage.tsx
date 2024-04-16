@@ -3,7 +3,6 @@ import s from "./mainPage.module.scss";
 import imageStore from "../../store/store-main";
 
 import Stages from "./Stages/Stages";
-import AboutUs from "./aboutUs/aboutUs";
 
 const MainPage = observer(() => {
   return (
@@ -34,7 +33,6 @@ const MainPage = observer(() => {
         </div>
       </div>
       <Stages />
-      <AboutUs />
     </>
   );
 });

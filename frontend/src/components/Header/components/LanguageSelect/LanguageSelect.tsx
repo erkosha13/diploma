@@ -2,9 +2,9 @@ import React from "react";
 import { Select } from "antd";
 import s from "./LanguageSelect.module.scss";
 
-import KZ from "../../assets/icons/kk.svg";
-import RU from "../../assets/icons/ru.svg";
-import EN from "../../assets/icons/en.svg";
+import KZ from "../../../../assets/icons/kk.svg";
+import RU from "../../../../assets/icons/ru.svg";
+import EN from "../../../../assets/icons/en.svg";
 
 interface LanguageSelectProps {
   defaultValue: string;

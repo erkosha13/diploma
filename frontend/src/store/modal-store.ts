@@ -1,9 +1,8 @@
-// modal-store.ts
 import { makeAutoObservable } from "mobx";
 
 class ModalStore {
   isVisible = false;
-  showLogin = true; 
+  showLogin = true;
 
   constructor() {
     makeAutoObservable(this);
