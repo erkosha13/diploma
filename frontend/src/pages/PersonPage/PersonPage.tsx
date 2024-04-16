@@ -1,3 +1,4 @@
+import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
 import s from "./PersonPage.module.scss";
 
 import { Skeleton } from "antd";
@@ -18,35 +19,40 @@ const PersonPage = () => {
     <div className={s.personPage}>
       <div className="container">
         <div className={s.personPageContent}>
-          <div className={s.personInfoContainer}>
-            <div className={s.personInfo}>
-              <div className={s.personName}>
-                <Skeleton.Image />
-                <p>{personInfo.name}</p>
-                <p>{personInfo.university}</p>
-                <p>Age: {personInfo.age}</p>
-                <p>City: {personInfo.city}</p>
-              </div>
-              <div className={s.contactInfo}>
-                <h2>Contacts </h2>
-                <p>Email: {personInfo.email}</p>
-                <p>Phone: {personInfo.phone}</p>
-                <p>Address: {personInfo.address}</p>
-              </div>
-            </div>
-          </div>
-          <div className={s.personDiplomaContainer}>
-            <div className={s.personDiploma}>
-              <div className={s.diplomaTitle}>
-                <h2>Diplomas</h2>
-              </div>
-              <div className={s.diplomaList}>
-                {personInfo.diplomas.map((diploma, index) => (
-                  <p key={index}>{diploma}</p>
-                ))}
+          <PersonAnimated>
+            <div className={s.personInfoContainer}>
+              <div className={s.personInfo}>
+                <div className={s.personName}>
+                  <Skeleton.Image />
+                  <p>{personInfo.name}</p>
+                  <p>{personInfo.university}</p>
+                  <p>Age: {personInfo.age}</p>
+                  <p>City: {personInfo.city}</p>
+                </div>
+                <div className={s.contactInfo}>
+                  <h2>Contacts </h2>
+                  <p>Email: {personInfo.email}</p>
+                  <p>Phone: {personInfo.phone}</p>
+                  <p>Address: {personInfo.address}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </PersonAnimated>
+          <PersonAnimated>
+            <div className={s.personDiplomaContainer}>
+              <div className={s.personDiploma}>
+                <div className={s.diplomaTitle}>
+                  <h2>Diplomas</h2>
+                </div>
+                <div className={s.diplomaList}>
+                  {personInfo.diplomas.map((diploma, index) => (
+                    <p key={index}>{diploma}</p>
+                    
+                  ))}
+                </div>
+              </div>
+            </div>
+          </PersonAnimated>
         </div>
       </div>
     </div>

@@ -1,91 +1,98 @@
-.modalContent {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: #ffffff;
-  border-radius: 30px;
-  margin: 50px;
-  width: 80%;
-  height: 500px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1000;
-
-  .modalLogin,
-  .modalSignUp {
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1100;
+  .modalContent {
     display: flex;
-    width: 50%;
-  }
-
-  .modalOverlay {
-    background-color: #f0f0f0;
-    height: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #ffffff;
+    border-radius: 30px;
+    margin: 50px;
+    width: 80%;
+    height: 500px;
+    overflow: hidden;
     position: relative;
-    transition: transform 0.6s ease-in-out;
-    width: 512px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
+    z-index: 1000;
 
-    .modalOverlayLeft,
-    .modalOverlayRight {
+    .modalLogin,
+    .modalSignUp {
+      display: flex;
+      width: 50%;
+    }
+
+    .modalOverlay {
+      background-color: #f0f0f0;
+      height: 100%;
+      position: relative;
+      transition: transform 0.6s ease-in-out;
+      width: 512px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: absolute;
       top: 0;
-      height: 100%;
-      width: 54%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      left: 0;
+      z-index: 2;
 
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
+      .modalOverlayLeft,
+      .modalOverlayRight {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 54%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+        }
+      }
+
+      .modalButtons {
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        p {
+          font-size: 24px;
+        }
       }
     }
 
-    .modalButtons {
-      width: 300px;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
+    .modalClose {
+      position: absolute;
+      z-index: 1000;
+      left: 93%;
+      top: 5%;
 
-      p {
-        font-size: 24px;
-      }
-    }
-  }
-
-  .modalClose {
-    position: absolute;
-    z-index: 1000;
-    left: 93%;
-    top: 5%;
-
-    border-radius: 25%;
-    background: linear-gradient(
-      to right,
-      rgb(0, 120, 194) 15%,
-      rgb(0, 71, 255) 50%,
-      rgb(132, 83, 210) 90%
-    );
-    color: #ffffff;
-    border: none;
-
-    &:hover {
+      border-radius: 25%;
       background: linear-gradient(
         to right,
         rgb(0, 120, 194) 15%,
         rgb(0, 71, 255) 50%,
         rgb(132, 83, 210) 90%
       );
+      color: #ffffff;
+      border: none;
+
+      &:hover {
+        background: linear-gradient(
+          to right,
+          rgb(0, 120, 194) 15%,
+          rgb(0, 71, 255) 50%,
+          rgb(132, 83, 210) 90%
+        );
+      }
     }
   }
 }
