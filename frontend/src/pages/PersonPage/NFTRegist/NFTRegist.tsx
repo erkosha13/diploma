@@ -41,7 +41,7 @@ const Modal: React.FC = observer(() => {
           </div>
         </div>
 
-        <Button type="button">Отправить</Button>
+        <Button>Отправить</Button>
       </div>
     </div>
   );
