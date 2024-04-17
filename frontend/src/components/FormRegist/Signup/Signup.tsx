@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../../shared/ui/Button/Button";
 import { signUpStore } from "../../../store/signup-store";
 import s from "./Signup.module.scss";
-import { modalStore } from "../../../store/modal-store";
+import { registStore } from "../../../store/regist-store";
 import { autorun } from "mobx";
 
 export const Signup = observer(() => {
@@ -14,7 +14,7 @@ export const Signup = observer(() => {
 
   useEffect(() => {
     const reactionCleanup = autorun(() => {
-      if (!modalStore.isVisible) {
+      if (!registStore.isVisible) {
         clearData();
       }
     });
