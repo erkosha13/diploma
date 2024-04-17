@@ -41,7 +41,12 @@ const PersonPage = observer(() => {
                 </div>
               </div>
             </div>
-            <Button className={s.personButtonNFT} onClick={() => registStore.openModal()}>Create NFT diploma</Button>
+            <Button
+              className={s.personButtonNFT}
+              onClick={() => registStore.openModal()}
+            >
+              Create NFT diploma
+            </Button>
             <Modal />
           </PersonAnimated>
           <PersonAnimated>
