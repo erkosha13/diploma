@@ -35,10 +35,19 @@ class LoginStore {
     this.inpDataErr = { loginErr: "", passwordErr: "" };
   };
   validateData = () => {
-    if (!this.inpData.login)
+    if (this.inpData.login === "")
       this.inpDataErr.loginErr = "Логин не может быть пустым";
-    if (!this.inpData.password)
+    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
+      this.inpDataErr.loginErr = "Некорретный логин";
+
+    if (this.inpData.password === "")
       this.inpDataErr.passwordErr = "Пароль не может быть пустым";
+    else if (
+      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
+        this.inpData.password
+      )
+    )
+      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
   };
 
   clickHandler = (navigateCallback: (path: string) => void) => {
