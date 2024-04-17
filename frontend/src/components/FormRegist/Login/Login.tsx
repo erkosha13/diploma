@@ -5,7 +5,7 @@ import s from "./Login.module.scss";
 import { Button } from "../../../shared/ui/Button/Button";
 import { loginStore } from "../../../store/login-store";
 import { IUserData } from "../../../shared/types/IUserData";
-import { modalStore } from "../../../store/modal-store";
+import { registStore } from "../../../store/regist-store";
 import { autorun } from "mobx";
 
 export const Login = observer(() => {
@@ -14,7 +14,7 @@ export const Login = observer(() => {
 
   useEffect(() => {
     const reactionCleanup = autorun(() => {
-      if (!modalStore.isVisible) {
+      if (!registStore.isVisible) {
         clearData();
       }
     });

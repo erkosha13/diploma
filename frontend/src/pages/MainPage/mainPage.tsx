@@ -2,7 +2,9 @@ import { observer } from "mobx-react-lite";
 import s from "./mainPage.module.scss";
 
 import Stages from "./Stages/Stages";
+
 import Diplomas from "./components/skeleton/MainSkeleton";
+
 
 const MainPage = observer(() => {
   return (
@@ -35,6 +37,7 @@ const MainPage = observer(() => {
         </div>
       </div>
       <Stages />
+      <AboutUs />
     </>
   );
 });

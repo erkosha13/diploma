@@ -1,7 +1,7 @@
 import s from "./LoginSignup.module.scss";
 
 import { observer } from "mobx-react-lite";
-import { modalStore } from "../../store/modal-store";
+import { registStore } from "../../store/regist-store";
 import { Login } from "../../components/FormRegist/Login/Login";
 import { Signup } from "../../components/FormRegist/Signup/Signup";
 import { Button } from "../../shared/ui/Button/Button";
@@ -10,13 +10,13 @@ import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 
 export const LoginSignUp = observer(() => {
   const toggleOverlay = () => {
-    modalStore.toggleLoginSignup();
+    registStore.toggleLoginSignup();
   };
 
   return (
     <div
       className={s.container}
-      style={{ display: modalStore.isVisible ? "block" : "block" }}
+      style={{ display: registStore.isVisible ? "block" : "block" }}
     >
       <AnimatedBox>
         <div className="container">
@@ -30,20 +30,17 @@ export const LoginSignUp = observer(() => {
             <div
               className={s.overlay}
               style={{
-                transform: modalStore.showLogin
+                transform: registStore.showLogin
                   ? "translateX(100%)"
                   : "translateX(0)",
               }}
             >
               <div
                 className={s.overlayLeft}
-                style={{ left: modalStore.showLogin ? "25%" : "25%" }}
+                style={{ left: registStore.showLogin ? "25%" : "25%" }}
               >
-                <div
-                  className={s.overlayRight}
-                  style={{ left: "0" }}
-                ></div>
-                {modalStore.showLogin ? (
+                <div className={s.overlayRight} style={{ left: "0" }}></div>
+                {registStore.showLogin ? (
                   <div className={s.buttons}>
                     <p>Welcome Back!</p>
                     <Button onClick={toggleOverlay}>Sign Up</Button>

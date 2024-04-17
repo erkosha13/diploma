@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-class ModalStore {
+class RegistStore {
   isVisible = false;
   showLogin = true;
 
@@ -25,4 +25,4 @@ class ModalStore {
   }
 }
 
-export const modalStore = new ModalStore();
+export const registStore = new RegistStore();

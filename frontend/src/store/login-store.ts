@@ -1,10 +1,10 @@
 // src/stores/LoginStore.ts
 import { makeAutoObservable } from "mobx";
-import { modalStore } from "./modal-store";
 import { IUserData } from "../shared/types/IUserData";
+import { registStore } from "./regist-store";
 
 class LoginStore {
-  modalStore;
+  registStore;
   inpData: IUserData = {
     login: "",
     password: "",
@@ -17,7 +17,7 @@ class LoginStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.modalStore = modalStore;
+    this.registStore = registStore;
   }
 
   updateInpData = (key: keyof IUserData, value: string) => {
@@ -45,7 +45,7 @@ class LoginStore {
     this.validateData();
     if (Object.values(this.inpDataErr).every((i) => i === "")) {
       navigateCallback("/person");
-      this.modalStore.closeModal();
+      this.registStore.closeModal();
     }
   };
 }
