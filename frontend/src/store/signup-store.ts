@@ -1,5 +1,5 @@
-// src/stores/SignUpStore.ts
 import { makeAutoObservable } from "mobx";
+import { registerUser } from "./registerUser"; // Импортируем функцию для регистрации из файла api
 import { registStore } from "./regist-store";
 import { IUserData } from "../shared/types/IUserData";
 
@@ -32,6 +32,7 @@ class SignUpStore {
       this.validateData();
     }
   };
+
   clearData = () => {
     this.inpData = { login: "", password: "", confirmpassword: "" };
     this.inpDataErr = { loginErr: "", passwordErr: "", confirmpasswordErr: "" };
@@ -57,11 +58,18 @@ class SignUpStore {
       this.inpDataErr.confirmpasswordErr = "Пароли не совпадают";
   };
 
-  clickHandler = (navigateCallback: (path: string) => void) => {
-    this.validateData();
-    if (Object.values(this.inpDataErr).every((i) => i === "")) {
-      navigateCallback("/person");
-      this.registStore.closeModal();
+  clickHandler = async () => {
+    try {
+      this.validateData();
+
+      if (Object.values(this.inpDataErr).every((i) => i === "")) {
+        await registerUser(this.inpData.login, this.inpData.password);
+        // Здесь можно обработать успешную регистрацию
+        alert("нажмите на кнопку login слева");
+      }
+    } catch (error) {
+      // Здесь можно обработать ошибку регистрации
+      console.error("Ошибка при регистрации:", error);
     }
   };
 }

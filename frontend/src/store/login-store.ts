@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import axios from 'axios'
+import { loginUser } from "./loginUser"; // Импортируем функцию для входа из файла api
+
 
 class LoginStore {
   inpData = {
@@ -33,31 +34,18 @@ class LoginStore {
   };
 
   clickHandler = async (navigateCallback: (path: string) => void) => {
-    this.validateData();
-    if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
-
     try {
-      const response = await axios.post(
-        'http://195.49.210.226:8080/api/auth/login',
-        {
-          userName: this.inpData.login,
-          password: this.inpData.password
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      this.validateData();
 
-      // Обработка успешного входа
-      console.log(response.data); // Пример вывода ответа в консоль
-
-      // Переход на другую страницу после успешного входа
-      navigateCallback("/person");
+      if (!Object.values(this.inpDataErr).some((i) => i !== "")) {
+        const userData = await loginUser(this.inpData.login, this.inpData.password);
+        // Здесь можно обработать успешный вход, например, сохранить информацию о пользователе и перенаправить на нужную страницу
+        console.log('Пользователь успешно вошел:', userData);
+        navigateCallback("/person");
+      }
     } catch (error) {
-      // Обработка ошибок при входе
-      console.error('Error:', error);
+      // Здесь можно обработать ошибку входа
+      console.error('Ошибка при входе:', error);
     }
   };
 
