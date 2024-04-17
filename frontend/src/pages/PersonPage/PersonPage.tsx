@@ -1,9 +1,13 @@
+import { observer } from "mobx-react-lite";
 import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
+import { Button } from "../../shared/ui/Button/Button";
 import s from "./PersonPage.module.scss";
 
 import { Skeleton } from "antd";
+import Modal from "./NFTRegist/NFTRegist";
+import { registStore } from "../../store/regist-store";
 
-const PersonPage = () => {
+const PersonPage = observer(() => {
   const personInfo = {
     name: "Алексей Петров",
     university: "Университет имени Ивана Иванова",
@@ -37,6 +41,8 @@ const PersonPage = () => {
                 </div>
               </div>
             </div>
+            <Button onClick={() => registStore.openModal()}>Open Modal</Button>
+            <Modal />
           </PersonAnimated>
           <PersonAnimated>
             <div className={s.personDiplomaContainer}>
@@ -47,7 +53,6 @@ const PersonPage = () => {
                 <div className={s.diplomaList}>
                   {personInfo.diplomas.map((diploma, index) => (
                     <p key={index}>{diploma}</p>
-                    
                   ))}
                 </div>
               </div>
@@ -57,6 +62,6 @@ const PersonPage = () => {
       </div>
     </div>
   );
-};
+});
 
 export default PersonPage;

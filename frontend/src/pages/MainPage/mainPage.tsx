@@ -4,7 +4,7 @@ import s from "./mainPage.module.scss";
 import Stages from "./Stages/Stages";
 
 import Diplomas from "./components/skeleton/MainSkeleton";
-
+import AboutUs from "./aboutUs/aboutUs";
 
 const MainPage = observer(() => {
   return (
