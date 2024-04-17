@@ -16,7 +16,7 @@ export default function Footer() {
                 <p>Features</p>
               </li>
               <li>
-                <p>Case studies</p>{" "}
+                <p>Case studies</p>
               </li>
               <li>
                 <p>Book Demo</p>
@@ -69,6 +69,9 @@ export default function Footer() {
               <img src={Telegram} alt="Telegram" />
               <img src={Instagram} alt="Instagram" />
             </div>
+          </div>
+          <div className={s.designBy}>
+            <p>Design by dreamoferkosha</p>
           </div>
         </div>
       </div>
