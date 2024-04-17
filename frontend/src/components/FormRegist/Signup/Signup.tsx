@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "../../../shared/ui/Button/Button";
 import { signUpStore } from "../../../store/signup-store";
 import s from "./Signup.module.scss";
-import { registStore } from "../../../store/regist-store";
 import { autorun } from "mobx";
+import { registStore } from "../../../store/regist-store";
 
 export const Signup = observer(() => {
-  const { inpData, inpDataErr, updateInpData, clearData } = signUpStore;
-
-  const navigate = useNavigate();
+  const { inpData, inpDataErr, updateInpData, clearData, clickHandler } =
+    signUpStore;
 
   useEffect(() => {
     const reactionCleanup = autorun(() => {
@@ -22,7 +21,7 @@ export const Signup = observer(() => {
   }, []);
 
   const handleClick = () => {
-    signUpStore.clickHandler(navigate);
+    clickHandler();
   };
 
   return (

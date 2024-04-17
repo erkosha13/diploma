@@ -4,12 +4,11 @@ import { useNavigate } from "react-router-dom";
 import s from "./Login.module.scss";
 import { Button } from "../../../shared/ui/Button/Button";
 import { loginStore } from "../../../store/login-store";
-import { IUserData } from "../../../shared/types/IUserData";
 import { registStore } from "../../../store/regist-store";
 import { autorun } from "mobx";
 
 export const Login = observer(() => {
-  const { inpData, inpDataErr, updateInpData, clearData } = loginStore;
+  const { inpData, inpDataErr, updateInpData, clearData, clickHandler } = loginStore;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,9 +21,7 @@ export const Login = observer(() => {
   }, []);
 
   const handleClick = () => {
-    if (!inpDataErr.loginErr && !inpDataErr.passwordErr) {
-      loginStore.clickHandler(navigate);
-    }
+    clickHandler(navigate);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -33,7 +30,7 @@ export const Login = observer(() => {
       !inpDataErr.loginErr &&
       !inpDataErr.passwordErr
     ) {
-      loginStore.clickHandler(navigate);
+      clickHandler(navigate);
     }
   };
 
@@ -48,7 +45,7 @@ export const Login = observer(() => {
             name="login"
             type="text"
             onChange={(e) =>
-              updateInpData(e.target.name as keyof IUserData, e.target.value)
+              updateInpData(e.target.name, e.target.value)
             }
             placeholder="Username"
             value={inpData.login}
@@ -62,7 +59,7 @@ export const Login = observer(() => {
             name="password"
             type="password"
             onChange={(e) =>
-              updateInpData(e.target.name as keyof IUserData, e.target.value)
+              updateInpData(e.target.name, e.target.value)
             }
             placeholder="Password"
             value={inpData.password}
