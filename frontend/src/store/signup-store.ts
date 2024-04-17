@@ -37,11 +37,23 @@ class SignUpStore {
     this.inpDataErr = { loginErr: "", passwordErr: "", confirmpasswordErr: "" };
   };
   validateData = () => {
-    if (!this.inpData.login)
+    if (this.inpData.login === "")
       this.inpDataErr.loginErr = "Логин не может быть пустым";
-    if (!this.inpData.password)
+    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
+      this.inpDataErr.loginErr = "Некорретный логин";
+
+    if (this.inpData.password === "")
       this.inpDataErr.passwordErr = "Пароль не может быть пустым";
-    if (this.inpData.password !== this.inpData.confirmpassword)
+    else if (
+      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
+        this.inpData.password
+      )
+    )
+      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
+
+    if (this.inpData.confirmpassword === "")
+      this.inpDataErr.confirmpasswordErr = "Подтвердите пароль";
+    else if (this.inpData.confirmpassword !== this.inpData.password)
       this.inpDataErr.confirmpasswordErr = "Пароли не совпадают";
   };
 

@@ -3,7 +3,7 @@ import s from "./mainPage.module.scss";
 
 import Stages from "./Stages/Stages";
 
-import Diplomas from "./components/skeleton/MainSkeleton";
+import DiplomaImg from "../../assets/img/Group_1.jpg";
 import AboutUs from "./aboutUs/aboutUs";
 
 const MainPage = observer(() => {
@@ -32,7 +32,7 @@ const MainPage = observer(() => {
             </p>
           </div>
           <div className={s.mainImg}>
-            <Diplomas />
+            <img src={DiplomaImg} alt="diploma"></img>
           </div>
         </div>
       </div>
