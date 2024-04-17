@@ -1,11 +1,8 @@
-// src/stores/LoginStore.ts
 import { makeAutoObservable } from "mobx";
-import { IUserData } from "../shared/types/IUserData";
-import { registStore } from "./regist-store";
+import axios from 'axios'
 
 class LoginStore {
-  registStore;
-  inpData: IUserData = {
+  inpData = {
     login: "",
     password: "",
   };
@@ -17,10 +14,9 @@ class LoginStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.registStore = registStore;
   }
 
-  updateInpData = (key: keyof IUserData, value: string) => {
+  updateInpData = (key: string, value: string) => {
     this.inpDataErr = {
       ...this.inpDataErr,
       [key + "Err"]: "",
@@ -30,10 +26,41 @@ class LoginStore {
       [key]: value,
     };
   };
+
   clearData = () => {
     this.inpData = { login: "", password: "" };
     this.inpDataErr = { loginErr: "", passwordErr: "" };
   };
+
+  clickHandler = async (navigateCallback: (path: string) => void) => {
+    this.validateData();
+    if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
+
+    try {
+      const response = await axios.post(
+        'http://195.49.210.226:8080/api/auth/login',
+        {
+          userName: this.inpData.login,
+          password: this.inpData.password
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      // Обработка успешного входа
+      console.log(response.data); // Пример вывода ответа в консоль
+
+      // Переход на другую страницу после успешного входа
+      navigateCallback("/person");
+    } catch (error) {
+      // Обработка ошибок при входе
+      console.error('Error:', error);
+    }
+  };
+
   validateData = () => {
     if (this.inpData.login === "")
       this.inpDataErr.loginErr = "Логин не может быть пустым";
@@ -48,14 +75,6 @@ class LoginStore {
       )
     )
       this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
-  };
-
-  clickHandler = (navigateCallback: (path: string) => void) => {
-    this.validateData();
-    if (Object.values(this.inpDataErr).every((i) => i === "")) {
-      navigateCallback("/person");
-      this.registStore.closeModal();
-    }
   };
 }
 
