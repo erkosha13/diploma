@@ -1,25 +1,19 @@
 import { observer } from "mobx-react-lite";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { registStore } from "../../store/regist-store";
-import Modal from "./NFTRegist/NFTRegist";
-import { Button } from "../../shared/ui/Button/Button";
+import { loginStore } from "../../store/login-store";
 import s from "./PersonPage.module.scss";
 import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
-import { loginStore } from "../../store/login-store";
 
 interface Diploma {
-  id: number;
-  metadata: {
-    name: string;
-    description: string;
-    image: string;
-    attributes: { trait_type: string; value: string }[];
-  };
+  name: string;
 }
 
 const PersonPage = observer(() => {
-  const [diplomas, setDiplomas] = useState<Diploma[]>([]);
+  const [userData, setUserData] = useState<{
+    name: string;
+    diplomas: Diploma[];
+  }>({ name: "", diplomas: [] });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,14 +26,16 @@ const PersonPage = observer(() => {
             },
           }
         );
-        setDiplomas(response.data);
+        const name = response.data[0]?.name || "";
+        const diplomas = response.data.slice(1);
+        setUserData({ name, diplomas });
       } catch (error) {
         console.error("Ошибка при получении данных:", error);
       }
     };
 
     fetchData();
-  }, []); // Пустой массив зависимостей гарантирует, что эффект будет вызван только один раз после монтирования компонента
+  }, []);
 
   return (
     <div className={s.personPage}>
@@ -49,22 +45,10 @@ const PersonPage = observer(() => {
             <div className={s.personInfoContainer}>
               <div className={s.personInfo}>
                 <div className={s.personName}>
-                  {diplomas.map((diploma) => (
-                    <div key={diploma.id}>
-                      <p>ФИО :{diploma.metadata.name}</p>
-                      <p>Университет :{diploma.metadata.description}</p>
-                    </div>
-                  ))}
+                  {userData.name && <p>{userData.name}</p>}
                 </div>
               </div>
             </div>
-            <Button
-              className={s.personButtonNFT}
-              onClick={() => registStore.openModal()}
-            >
-              Create NFT diploma
-            </Button>
-            <Modal />
           </PersonAnimated>
           <PersonAnimated>
             <div className={s.personDiplomaContainer}>
@@ -73,12 +57,9 @@ const PersonPage = observer(() => {
                   <h2>Diplomas</h2>
                 </div>
                 <div className={s.diplomaList}>
-                  {diplomas.map((diploma) => (
-                    <div key={diploma.id}>
-                      <img
-                        src={diploma.metadata.image}
-                        alt={diploma.metadata.name}
-                      />
+                  {userData.diplomas.map((data, index) => (
+                    <div key={index} className={s.diplomaItem}>
+                      <img src={data} alt="" />
                     </div>
                   ))}
                 </div>

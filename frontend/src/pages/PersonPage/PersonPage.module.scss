@@ -30,6 +30,8 @@
         padding: 20px 10px;
 
         .personName {
+          display: flex;
+          justify-content: center;
           margin-bottom: 10px;
 
           div {
