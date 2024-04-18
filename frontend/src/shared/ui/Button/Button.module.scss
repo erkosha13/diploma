@@ -67,4 +67,11 @@
     z-index: -1;
     transform: translate(-50%, -50%);
   }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    -webkit-text-fill-color: white;
+    color: white;
+  }
 }
