@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { loginUser } from "./loginUser"; // Импортируем функцию для входа из файла api
 
-
 class LoginStore {
   inpData = {
     login: "",
@@ -12,6 +11,8 @@ class LoginStore {
     loginErr: "",
     passwordErr: "",
   };
+
+  userData = ""; // Добавляем свойство для хранения данных пользователя
 
   constructor() {
     makeAutoObservable(this);
@@ -38,9 +39,9 @@ class LoginStore {
       this.validateData();
 
       if (!Object.values(this.inpDataErr).some((i) => i !== "")) {
-        const userData = await loginUser(this.inpData.login, this.inpData.password);
-        // Здесь можно обработать успешный вход, например, сохранить информацию о пользователе и перенаправить на нужную страницу
-        console.log('Пользователь успешно вошел:', userData);
+        this.userData = await loginUser(this.inpData.login, this.inpData.password);
+        // Сохраняем данные пользователя в свойстве userData
+        console.log('Пользователь успешно вошел:', this.userData);
         navigateCallback("/person");
       }
     } catch (error) {

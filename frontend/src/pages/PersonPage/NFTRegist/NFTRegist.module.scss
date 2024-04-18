@@ -19,6 +19,15 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 50px;
+
+
+  .nftSubmit{
+    background: linear-gradient(to right, rgb(0, 120, 194) 15%, rgb(0, 71, 255) 50%, rgb(132, 83, 210) 90%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+  }
 }
 
 .closeButton {
