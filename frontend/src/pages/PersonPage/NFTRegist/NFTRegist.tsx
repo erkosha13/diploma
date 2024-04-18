@@ -1,13 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Select } from "antd";
 import s from "./NFTRegist.module.scss";
 import { registStore } from "../../../store/regist-store";
-import { Button } from "../../../shared/ui/Button/Button";
-
+import axios from "axios";
+import { loginStore } from '../../../store/login-store';
 const { Option } = Select;
 
 const Modal: React.FC = observer(() => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    university: "",
+    degree: "",
+    color: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (name: string, value: string) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post(
+        "http://195.49.210.226:8080/api/diploma",
+        {
+          image: formData.color,
+          name: formData.fullName,
+          description: formData.university,
+          degreeValue: formData.degree,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${loginStore.userData}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response:", response.data);
+
+      registStore.closeModal();
+    } catch (error) {
+      console.error("Ошибка при отправке данных:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (!registStore.isVisible) return null;
 
   return (
@@ -22,26 +68,44 @@ const Modal: React.FC = observer(() => {
         <h2>Создай свой профиль</h2>
 
         <div className={s.inputGroup}>
-          <input placeholder="ФИО" />
-          <input placeholder="Полное Название университета" />
+          <input
+            placeholder="ФИО"
+            value={formData.fullName}
+            onChange={(e) => handleChange("fullName", e.target.value)}
+          />
+          <input
+            placeholder="Полное Название университета"
+            value={formData.university}
+            onChange={(e) => handleChange("university", e.target.value)}
+          />
           <div className={s.classification}>
             <div className={s.degree}>
-              <Select defaultValue="Степень" style={{ width: 140 }}>
-                <Option value="bachelor">Бакалавриат</Option>
-                <Option value="master">Магистратура</Option>
-                <Option value="phd">Докторантура</Option>
+              <Select
+                defaultValue="Степень"
+                style={{ width: 140 }}
+                onChange={(value) => handleChange("degree", value)}
+              >
+                <Option value="bachelor">Bachelor</Option>
+                <Option value="master">Master</Option>
+                <Option value="doctor">Doctor</Option>
               </Select>
             </div>
             <div className={s.colour}>
-              <Select defaultValue="Цвет Диплома" style={{ width: 140 }}>
-                <Option value="blue">Синий </Option>
-                <Option value="red">Красный</Option>
+              <Select
+                defaultValue="Цвет Диплома"
+                style={{ width: 140 }}
+                onChange={(value) => handleChange("color", value)}
+              >
+                <Option value="blue">Blue</Option>
+                <Option value="red">Red</Option>
               </Select>
             </div>
           </div>
         </div>
 
-        <Button>Отправить</Button>
+        <button className={s.nftSubmit} onClick={handleSubmit} disabled={loading}>
+          {loading ? "Загрузка..." : "Submit"}
+        </button>
       </div>
     </div>
   );
