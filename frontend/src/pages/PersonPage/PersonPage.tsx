@@ -1,23 +1,45 @@
 import { observer } from "mobx-react-lite";
-import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { registStore } from "../../store/regist-store";
+import Modal from "./NFTRegist/NFTRegist";
 import { Button } from "../../shared/ui/Button/Button";
 import s from "./PersonPage.module.scss";
+import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
+import { loginStore } from "../../store/login-store";
 
-import { Skeleton } from "antd";
-import Modal from "./NFTRegist/NFTRegist";
-import { registStore } from "../../store/regist-store";
+interface Diploma {
+  id: number;
+  metadata: {
+    name: string;
+    description: string;
+    image: string;
+    attributes: { trait_type: string; value: string }[];
+  };
+}
 
 const PersonPage = observer(() => {
-  const personInfo = {
-    name: "Алексей Петров",
-    university: "Университет имени Ивана Иванова",
-    age: 30,
-    city: "Москва, Россия",
-    email: "example@example.com",
-    phone: "+79123456789",
-    address: "ул. Пушкина, д. Колотушкина, Москва, Россия",
-    diplomas: ["Example Diploma 1", "Example Diploma 2", "Example Diploma 3"],
-  };
+  const [diplomas, setDiplomas] = useState<Diploma[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<Diploma[]>(
+          "http://195.49.210.226:8080/api/diploma",
+          {
+            headers: {
+              Authorization: `Bearer ${loginStore.userData}`,
+            },
+          }
+        );
+        setDiplomas(response.data);
+      } catch (error) {
+        console.error("Ошибка при получении данных:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Пустой массив зависимостей гарантирует, что эффект будет вызван только один раз после монтирования компонента
 
   return (
     <div className={s.personPage}>
@@ -27,17 +49,12 @@ const PersonPage = observer(() => {
             <div className={s.personInfoContainer}>
               <div className={s.personInfo}>
                 <div className={s.personName}>
-                  <Skeleton.Image />
-                  <p>{personInfo.name}</p>
-                  <p>{personInfo.university}</p>
-                  <p>Age: {personInfo.age}</p>
-                  <p>City: {personInfo.city}</p>
-                </div>
-                <div className={s.contactInfo}>
-                  <h2>Contacts </h2>
-                  <p>Email: {personInfo.email}</p>
-                  <p>Phone: {personInfo.phone}</p>
-                  <p>Address: {personInfo.address}</p>
+                  {diplomas.map((diploma) => (
+                    <div key={diploma.id}>
+                      <p>ФИО :{diploma.metadata.name}</p>
+                      <p>Университет :{diploma.metadata.description}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -56,8 +73,13 @@ const PersonPage = observer(() => {
                   <h2>Diplomas</h2>
                 </div>
                 <div className={s.diplomaList}>
-                  {personInfo.diplomas.map((diploma, index) => (
-                    <p key={index}>{diploma}</p>
+                  {diplomas.map((diploma) => (
+                    <div key={diploma.id}>
+                      <img
+                        src={diploma.metadata.image}
+                        alt={diploma.metadata.name}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>

@@ -42,7 +42,7 @@ class LoginStore {
         this.userData = await loginUser(this.inpData.login, this.inpData.password);
         // Сохраняем данные пользователя в свойстве userData
         console.log('Пользователь успешно вошел:', this.userData);
-        navigateCallback("/person");
+        navigateCallback("/check");
       }
     } catch (error) {
       // Здесь можно обработать ошибку входа
