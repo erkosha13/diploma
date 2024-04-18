@@ -5,20 +5,16 @@ import { loginStore } from "../../store/login-store";
 import s from "./PersonPage.module.scss";
 import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
 
-interface Diploma {
-  name: string;
-}
-
 const PersonPage = observer(() => {
   const [userData, setUserData] = useState<{
     name: string;
-    diplomas: Diploma[];
-  }>({ name: "", diplomas: [] });
+    diplomas: string[];
+  }>({ name: "", diplomas: [''] });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Diploma[]>(
+        const response = await axios.get(
           "http://195.49.210.226:8080/api/diploma",
           {
             headers: {
@@ -57,7 +53,7 @@ const PersonPage = observer(() => {
                   <h2>Diplomas</h2>
                 </div>
                 <div className={s.diplomaList}>
-                  {userData.diplomas.map((data, index) => (
+                  {userData?.diplomas?.map((data, index) => (
                     <div key={index} className={s.diplomaItem}>
                       <img src={data} alt="" />
                     </div>
