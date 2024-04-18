@@ -22,7 +22,6 @@ export const GenerateDiploma = () => {
         </Button>
         <Modal />
 
-        {/* Добавлен дополнительный div с информацией */}
         {!isNFTCreated && (
           <div className={s.additionalDiv}>
             <p>Для продолжения, пожалуйста, создайте свой NFT диплом.</p>
