@@ -40,3 +40,94 @@
     }
   }
 }
+@media screen and (max-width: 1300px) {
+  .loginContent {
+    padding: 0 20px;
+
+    .loginTitle {
+      width: 100%;
+      gap: 20px;
+
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    .loginInput {
+      div {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .loginContent {
+    .loginTitle {
+      gap: 10px;
+
+      h1 {
+        font-size: 35px;
+      }
+    }
+
+    .loginInput {
+      div {
+        gap: 5px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 760px) {
+  .loginContent {
+    padding: 0 15px;
+
+    .loginTitle {
+      width: 100%;
+      gap: 10px;
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+
+    .loginInput {
+      margin-top: 10px;
+
+      div {
+        gap: 5px;
+        flex-direction: column;
+
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 520px) {
+  .loginContent {
+    padding: 0 10px;
+
+    .loginTitle {
+      width: 100%;
+      gap: 5px;
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .loginInput {
+      margin-top: 5px;
+      div {
+        gap: 3px;
+
+        span {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}

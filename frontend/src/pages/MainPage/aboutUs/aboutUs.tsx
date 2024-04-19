@@ -15,7 +15,7 @@ export default function AboutUs() {
             компании, которая поможет вам сделать вашу жизнь легче
           </p>
         </div>
-        <div>
+        <div className={s.textAlign}>
           <Button>Подробнее</Button>
         </div>
       </div>

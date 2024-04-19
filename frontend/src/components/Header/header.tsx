@@ -36,7 +36,10 @@ export const Header = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button onClick={isMainPage ? handleGoToSignUp : handleGoHome}>
+              <Button
+                className={s.button}
+                onClick={isMainPage ? handleGoToSignUp : handleGoHome}
+              >
                 {isMainPage ? "Sign Up / Log In" : "Home"}
               </Button>
             </div>
