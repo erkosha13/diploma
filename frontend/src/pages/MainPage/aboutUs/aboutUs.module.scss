@@ -6,9 +6,10 @@
   height: 100%;
   gap: 120px;
   padding: 60px 100px;
+
   h1 {
     font-weight: 100;
-    opacity: 0.5;
+    opacity: 0.6;
   }
   p {
     font-weight: 400;
@@ -25,4 +26,70 @@
   margin-top: 20px;
   font-style: italic;
   text-align: center;
+}
+
+@media screen and (max-width: 1100px) {
+  .text {
+    gap: 90px;
+    padding: 30px 55px;
+
+    Button {
+      padding: 15px;
+      width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .text {
+    gap: 60px;
+    padding: 20px 40px;
+
+    h1 {
+      font-size: 46px;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    Button {
+      padding: 12px;
+      width: 230px;
+    }
+  }
+
+  .additionalInfo {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .text {
+    .textAlign {
+      text-align: center;
+    }
+  }
+}
+@media screen and (max-width: 420px) {
+  .text {
+    gap: 30px;
+    padding: 25px 20px;
+
+    h1 {
+      font-size: 34px;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+    textAlign Button {
+      padding: 10px;
+      width: 200px;
+    }
+  }
+
+  .additionalInfo {
+    font-size: 0.75rem;
+  }
 }

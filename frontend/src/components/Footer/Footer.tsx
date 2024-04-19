@@ -70,9 +70,6 @@ export default function Footer() {
               <img src={Instagram} alt="Instagram" />
             </div>
           </div>
-          <div className={s.designBy}>
-            <p>Design by dreamoferkosha</p>
-          </div>
         </div>
       </div>
     </div>

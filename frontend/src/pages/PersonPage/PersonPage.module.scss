@@ -23,7 +23,7 @@
 
     .personInfoContainer {
       width: 350px;
-      min-height: 525px;
+      min-height: 595px;
       margin-bottom: 25px;
 
       .personInfo {
@@ -90,6 +90,179 @@
     .personButtonNFT {
       display: flex;
       margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .personPage {
+    .personPageContent {
+      justify-content: center;
+      gap: 35px;
+
+      .personInfoContainer {
+        width: 340px;
+        min-height: 585px;
+      }
+
+      .personDiplomaContainer {
+        width: 780px;
+        min-height: 585px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .personPage {
+    .personPageContent {
+      justify-content: center;
+
+      .personInfoContainer {
+        width: 310px;
+        min-height: 555px;
+
+        .personInfo {
+          .contactInfo {
+            h2 {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+
+      .personDiplomaContainer {
+        width: 620px;
+        min-height: 555px;
+
+        .diplomaList {
+          img {
+            width: 180px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .personPage {
+    .personPageContent {
+      gap: 20px;
+      .personInfoContainer {
+        width: 280px;
+        min-height: 535px;
+      }
+
+      .personDiplomaContainer {
+        width: 620px;
+        min-height: 535px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 880px) {
+  .personPage {
+    .personPageContent {
+      .personInfoContainer {
+        width: 260px;
+        min-height: 525px;
+      }
+
+      .personDiplomaContainer {
+        width: 560px;
+        min-height: 525px;
+        .diplomaList {
+          img {
+            width: 160px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 880px) {
+  .personPage {
+    .personPageContent {
+      .personInfoContainer {
+        width: 230px;
+        min-height: 535px;
+      }
+
+      .personDiplomaContainer {
+        width: 490px;
+        min-height: 535px;
+        .diplomaList {
+          img {
+            width: 120px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .personPage {
+    .personPageContent {
+      .personInfoContainer {
+        width: 215px;
+        min-height: 455px;
+      }
+
+      .personDiplomaContainer {
+        width: 455px;
+        min-height: 455px;
+        .diplomaList {
+          img {
+            width: 130px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .personPage {
+    .personPageContent {
+      flex-direction: column;
+      .personInfoContainer {
+        width: 100%;
+        min-height: 255px;
+        display: flex;
+      }
+
+      .personDiplomaContainer {
+        width: 100%;
+        min-height: 455px;
+        .diplomaList {
+          img {
+            width: 120px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .personPage {
+    .personPageContent {
+      flex-direction: column;
+      .personInfoContainer {
+        min-height: 155px;
+        display: flex;
+      }
+
+      .personDiplomaContainer {
+        min-height: 265px;
+        .diplomaList {
+          img {
+            width: 110px;
+          }
+        }
+      }
     }
   }
 }

@@ -20,9 +20,13 @@
   border-radius: 30px;
   padding: 50px;
 
-
-  .nftSubmit{
-    background: linear-gradient(to right, rgb(0, 120, 194) 15%, rgb(0, 71, 255) 50%, rgb(132, 83, 210) 90%);
+  .nftSubmit {
+    background: linear-gradient(
+      to right,
+      rgb(0, 120, 194) 15%,
+      rgb(0, 71, 255) 50%,
+      rgb(132, 83, 210) 90%
+    );
     color: white;
     border: none;
     border-radius: 10px;
@@ -50,4 +54,45 @@
   display: flex;
   justify-content: flex-end;
   gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .modalContent {
+    width: 80%;
+    padding: 30px;
+
+    .classification {
+      gap: 20px;
+      flex-direction: column;
+
+      align-items: flex-end;
+    }
+
+    .nftSubmit {
+      padding: 10px 20px;
+    }
+  }
+
+  .closeButton {
+    font-size: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .modalContent {
+    width: 95%;
+    padding: 20px;
+
+    .inputGroup,
+    .classification {
+      gap: 15px;
+    }
+
+    .nftSubmit {
+      padding: 8px 16px;
+    }
+  }
+
+  .closeButton {
+    font-size: 18px;
+  }
 }

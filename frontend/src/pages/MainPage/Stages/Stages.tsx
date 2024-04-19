@@ -2,15 +2,15 @@ import s from "./Stages.module.scss";
 
 export const Stages = () => {
   return (
-    <div className={s.stages}>
-      <div className="container">
+    <div className="container">
+      <div className={s.stages}>
         <div className={s.stagesContent}>
           <div className={s.stagesCards}>
             <div className={s.stageCard}>
               <h1>
                 <span>01</span>
               </h1>
-              <h4>Ознакомтесь с нашей страницей</h4>
+              <h4>Ознакомтесь с нами</h4>
             </div>
             <div className={s.stageCard}>
               <h1>
