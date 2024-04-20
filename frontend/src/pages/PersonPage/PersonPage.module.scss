@@ -23,10 +23,14 @@
 
     .personInfoContainer {
       width: 350px;
-      min-height: 595px;
+      min-height: 200px;
       margin-bottom: 25px;
 
       .personInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         padding: 20px 10px;
 
         .personName {
@@ -88,6 +92,11 @@
     }
 
     .personButtonNFT {
+      display: flex;
+      margin: 0 auto;
+    }
+
+    .logout {
       display: flex;
       margin: 0 auto;
     }

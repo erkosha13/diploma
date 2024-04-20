@@ -4,7 +4,6 @@ import { Select } from "antd";
 import s from "./NFTRegist.module.scss";
 import { registStore } from "../../../store/regist-store";
 import axios from "axios";
-import { loginStore } from '../../../store/login-store';
 const { Option } = Select;
 
 const Modal: React.FC = observer(() => {
@@ -28,6 +27,8 @@ const Modal: React.FC = observer(() => {
     try {
       setLoading(true);
 
+      const accessToken = localStorage.getItem("accessToken");
+
       const response = await axios.post(
         "http://195.49.210.226:8080/api/diploma",
         {
@@ -38,14 +39,14 @@ const Modal: React.FC = observer(() => {
         },
         {
           headers: {
-            Authorization: `Bearer ${loginStore.userData}`,
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
         }
       );
 
       console.log("Response:", response.data);
-
+      window.location.reload();
       registStore.closeModal();
     } catch (error) {
       console.error("Ошибка при отправке данных:", error);
@@ -103,7 +104,11 @@ const Modal: React.FC = observer(() => {
           </div>
         </div>
 
-        <button className={s.nftSubmit} onClick={handleSubmit} disabled={loading}>
+        <button
+          className={s.nftSubmit}
+          onClick={handleSubmit}
+          disabled={loading}
+        >
           {loading ? "Загрузка..." : "Submit"}
         </button>
       </div>
