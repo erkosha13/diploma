@@ -43,7 +43,7 @@ export const Login = observer(() => {
       <div className={s.registrationButton}>
         <span>Создание нового аккаунта</span>
         <Button onClick={handleGoToSignUp} className={s.button}>
-          -&gt;~
+          &rarr;
         </Button>
       </div>
 

@@ -43,7 +43,7 @@ export const Header = observer(() => {
               )}
               {!hasAccessToken && (
                 <Button className={s.button} onClick={handleGoToSignUp}>
-                  "Sign Up / Log In"
+                  Sign Up / Log In
                 </Button>
               )}
             </div>
