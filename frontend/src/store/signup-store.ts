@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { registerUser } from "./registerUser"; // Импортируем функцию для регистрации из файла api
+import { registerUser } from "./registerUser";
 import { registStore } from "./regist-store";
 import { IUserData } from "../shared/types/IUserData";
 
@@ -37,25 +37,41 @@ class SignUpStore {
     this.inpData = { login: "", password: "", confirmpassword: "" };
     this.inpDataErr = { loginErr: "", passwordErr: "", confirmpasswordErr: "" };
   };
+
   validateData = () => {
-    if (this.inpData.login === "")
-      this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
-      this.inpDataErr.loginErr = "Некорретный логин";
+    const { login, password, confirmpassword } = this.inpData;
+    const errors: {
+      loginErr: string;
+      passwordErr: string;
+      confirmpasswordErr: string;
+    } = {
+      loginErr: "",
+      passwordErr: "",
+      confirmpasswordErr: "",
+    };
 
-    if (this.inpData.password === "")
-      this.inpDataErr.passwordErr = "Пароль не может быть пустым";
-    else if (
-      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
-        this.inpData.password
-      )
-    )
-      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
+    const loginRegex = /^[a-zA-Z0-9]+$/;
+    if (login === "") {
+      errors.loginErr = "Логин не может быть пустым";
+    } else if (!loginRegex.test(login)) {
+      errors.loginErr = "Логин может содержать только латинские буквы и цифры";
+    }
 
-    if (this.inpData.confirmpassword === "")
-      this.inpDataErr.confirmpasswordErr = "Подтвердите пароль";
-    else if (this.inpData.confirmpassword !== this.inpData.password)
-      this.inpDataErr.confirmpasswordErr = "Пароли не совпадают";
+    // Валидация пароля
+    const passwordRegex = /^(?=.*[a-zA-Z]).{8,}$/;
+    if (password === "") {
+      errors.passwordErr = "Пароль не может быть пустым";
+    } else if (!passwordRegex.test(password)) {
+      errors.passwordErr = "Ваш пароль слишком легкий";
+    }
+
+    if (confirmpassword === "") {
+      errors.confirmpasswordErr = "Подтвердите пароль";
+    } else if (confirmpassword !== password) {
+      errors.confirmpasswordErr = "Пароли не совпадают";
+    }
+
+    this.inpDataErr = errors;
   };
 
   clickHandler = async () => {
@@ -64,11 +80,9 @@ class SignUpStore {
 
       if (Object.values(this.inpDataErr).every((i) => i === "")) {
         await registerUser(this.inpData.login, this.inpData.password);
-        // Здесь можно обработать успешную регистрацию
         alert("нажмите на кнопку login слева");
       }
     } catch (error) {
-      // Здесь можно обработать ошибку регистрации
       console.error("Ошибка при регистрации:", error);
     }
   };

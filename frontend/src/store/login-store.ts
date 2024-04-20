@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { loginUser } from "./loginUser"; // Импортируем функцию для входа из файла api
+import { loginUser } from "./loginUser"; 
 
 class LoginStore {
   inpData = {
@@ -12,7 +12,7 @@ class LoginStore {
     passwordErr: "",
   };
 
-  userData = ""; // Добавляем свойство для хранения данных пользователя
+  userData = ""; 
 
   constructor() {
     makeAutoObservable(this);
@@ -40,30 +40,39 @@ class LoginStore {
 
       if (!Object.values(this.inpDataErr).some((i) => i !== "")) {
         this.userData = await loginUser(this.inpData.login, this.inpData.password);
-        // Сохраняем данные пользователя в свойстве userData
         console.log('Пользователь успешно вошел:', this.userData);
         navigateCallback("/check");
       }
     } catch (error) {
-      // Здесь можно обработать ошибку входа
       console.error('Ошибка при входе:', error);
     }
   };
 
   validateData = () => {
-    if (this.inpData.login === "")
-      this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
-      this.inpDataErr.loginErr = "Некорретный логин";
+    const { login, password } = this.inpData;
+    const errors: {
+      loginErr: string;
+      passwordErr: string;
+    } = {
+      loginErr: "",
+      passwordErr: "",
+    };
 
-    if (this.inpData.password === "")
-      this.inpDataErr.passwordErr = "Пароль не может быть пустым";
-    else if (
-      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
-        this.inpData.password
-      )
-    )
-      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
+    const loginRegex = /^[a-zA-Z0-9]+$/;
+    if (login === "") {
+      errors.loginErr = "Логин не может быть пустым";
+    } else if (!loginRegex.test(login)) {
+      errors.loginErr = "Логин может содержать только латинские буквы и цифры";
+    }
+
+    const passwordRegex = /^(?=.*[a-zA-Z]).{8,}$/;
+    if (password === "") {
+      errors.passwordErr = "Пароль не может быть пустым";
+    } else if (!passwordRegex.test(password)) {
+      errors.passwordErr = "Ваш пароль слишком легкий";
+    }
+
+    this.inpDataErr = errors;
   };
 }
 
