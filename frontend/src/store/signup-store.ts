@@ -45,20 +45,18 @@ class SignUpStore {
   validateData = (): void => {
     if (this.inpData.login === "")
       this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
-      this.inpDataErr.loginErr = "Некорректный логин";
+    else if (!/^[A-Z][a-z]{3,}\d*$/.test(this.inpData.login))
+      this.inpDataErr.loginErr =
+        "Логин должен начинаться с заглавной буквы и содержать минимум 4 символа";
 
     if (this.inpData.password === "")
       this.inpDataErr.passwordErr = "Пароль не может быть пустым";
-    else if (this.inpData.password.length < 8)
-      this.inpDataErr.passwordErr = "Минимальная длина пароля - 8 символов";
-    else if (!/(?=.*[\W_])/.test(this.inpData.password))
-      this.inpDataErr.passwordErr =
-        "Пароль должен содержать хотя бы один спецсимвол";
+    else if (this.inpData.password.length < 7)
+      this.inpDataErr.passwordErr = "Минимальная длина пароля - 7 символов";
     else if (
-      !/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d\W_]{8,}$/.test(this.inpData.password)
+      !/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}$/.test(this.inpData.password)
     )
-      this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
+      this.inpDataErr.passwordErr = "Пароль слишком простой";
 
     if (this.inpData.confirmpassword === "")
       this.inpDataErr.confirmpasswordErr = "Подтвердите пароль";
@@ -72,8 +70,10 @@ class SignUpStore {
 
       if (Object.values(this.inpDataErr).every((i) => i === "")) {
         await registerUser(this.inpData.login, this.inpData.password);
-        alert("Регистрация успешна. Перенаправление на страницу входа.");
-        navigate("/login"); // Перенаправление на страницу login
+        alert(
+          "Регистрация успешна. Вы будете перенаправлены на страницу входа."
+        );
+        navigate("/login");
       }
     } catch (error) {
       console.error("Ошибка при регистрации:", error);
