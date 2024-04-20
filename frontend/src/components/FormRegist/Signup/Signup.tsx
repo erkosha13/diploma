@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+
 import { Button } from "../../../shared/ui/Button/Button";
 import { signUpStore } from "../../../store/signup-store";
 import s from "./Signup.module.scss";
 import { autorun } from "mobx";
 import { registStore } from "../../../store/regist-store";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = observer(() => {
-  const { inpData, inpDataErr, updateInpData, clearData, clickHandler } =
-    signUpStore;
 
+  const { inpData, inpDataErr, updateInpData, clearData, clickHandler } = signUpStore;
+
+  const navigate = useNavigate();
   useEffect(() => {
     const reactionCleanup = autorun(() => {
       if (!registStore.isVisible) {
@@ -21,11 +23,20 @@ export const Signup = observer(() => {
   }, []);
 
   const handleClick = () => {
-    clickHandler();
+    clickHandler(navigate);
   };
 
+  const handleGoToSignUp = () => {
+    navigate("/Login");
+  };
   return (
     <div className={s.signupContent}>
+      <div className={s.registrationButton}>
+        <span>Вернуться обратно</span>
+        <Button onClick={handleGoToSignUp} className={s.button}>
+          &larr;
+        </Button>
+      </div>
       <div className={s.signupTitle}>
         <h1>Create Account</h1>
       </div>
@@ -66,7 +77,6 @@ export const Signup = observer(() => {
           )}
         </div>
         <Button onClick={handleClick}>Sign Up</Button>
-        <Link to="/main"></Link>
       </div>
     </div>
   );
