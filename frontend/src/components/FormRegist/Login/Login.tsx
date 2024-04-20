@@ -41,7 +41,7 @@ export const Login = observer(() => {
   return (
     <div className={s.loginContent}>
       <div className={s.registrationButton}>
-        <span>Создание нового аккаунта</span>
+        <span>Create new Account</span>
         <Button onClick={handleGoToSignUp} className={s.button}>
           &rarr;
         </Button>

@@ -110,17 +110,16 @@
 @media (max-width: 780px) {
   .header {
     .navBar {
-      padding: 15px 5px;
+      padding: 0px 0px;
 
       .logo {
         justify-content: center;
         padding-left: 0;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
       }
 
       .settings {
-        width: 100%;
-        justify-content: space-around;
+
         margin-top: 0;
       }
 
