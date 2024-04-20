@@ -32,7 +32,7 @@ export const Signup = observer(() => {
   return (
     <div className={s.signupContent}>
       <div className={s.registrationButton}>
-        <span>Вернуться обратно</span>
+        <span>Back</span>
         <Button onClick={handleGoToSignUp} className={s.button}>
           &larr;
         </Button>
