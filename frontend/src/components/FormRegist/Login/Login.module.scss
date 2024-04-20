@@ -6,7 +6,13 @@
   align-items: center;
   text-align: center;
   color: white;
-
+  .registrationButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
   .loginTitle {
     width: 600px;
 
@@ -42,8 +48,6 @@
 }
 @media screen and (max-width: 1300px) {
   .loginContent {
-    padding: 0 20px;
-
     .loginTitle {
       width: 100%;
       gap: 20px;

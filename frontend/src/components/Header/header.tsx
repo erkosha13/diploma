@@ -15,7 +15,7 @@ export const Header = observer(() => {
   const hasAccessToken = !!localStorage.getItem("accessToken"); // Assuming accessToken is stored in localStorage
 
   const handleGoToSignUp = () => {
-    navigate("/modal");
+    navigate("/Login");
   };
 
   const handleGoToPerson = () => {

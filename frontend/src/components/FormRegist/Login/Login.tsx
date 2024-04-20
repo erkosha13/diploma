@@ -24,6 +24,9 @@ export const Login = observer(() => {
   const handleClick = () => {
     clickHandler(navigate);
   };
+  const handleGoToSignUp = () => {
+    navigate("/SignUp");
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -37,6 +40,13 @@ export const Login = observer(() => {
 
   return (
     <div className={s.loginContent}>
+      <div className={s.registrationButton}>
+        <span>Создание нового аккаунта</span>
+        <Button onClick={handleGoToSignUp} className={s.button}>
+          -&gt;~
+        </Button>
+      </div>
+
       <div className={s.loginTitle}>
         <h1>Sign in to Website</h1>
       </div>
