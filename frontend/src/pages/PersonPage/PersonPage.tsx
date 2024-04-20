@@ -1,24 +1,30 @@
 import { observer } from "mobx-react-lite";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { loginStore } from "../../store/login-store";
 import s from "./PersonPage.module.scss";
 import { PersonAnimated } from "../../components/AnimatedBox/PersonAnimated";
+import { Button } from "../../shared/ui/Button/Button";
+import Modal from "./NFTRegist/NFTRegist";
+import { registStore } from "../../store/regist-store";
 
 const PersonPage = observer(() => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<{
     name: string;
     diplomas: string[];
-  }>({ name: "", diplomas: [''] });
+  }>({ name: "", diplomas: [""] });
 
   useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "http://195.49.210.226:8080/api/diploma",
           {
             headers: {
-              Authorization: `Bearer ${loginStore.userData}`,
+              Authorization: `Bearer ${accessToken}`,
             },
           }
         );
@@ -33,6 +39,11 @@ const PersonPage = observer(() => {
     fetchData();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/");
+  };
+
   return (
     <div className={s.personPage}>
       <div className="container">
@@ -43,8 +54,18 @@ const PersonPage = observer(() => {
                 <div className={s.personName}>
                   {userData.name && <p>{userData.name}</p>}
                 </div>
+                <Button
+                  className="personButtonNFT"
+                  onClick={() => {
+                    registStore.openModal();
+                  }}
+                >
+                  Create NFT diploma
+                </Button>
+                <Modal />
               </div>
             </div>
+            <Button className={s.logout} onClick={handleLogout}>Logout</Button>
           </PersonAnimated>
           <PersonAnimated>
             <div className={s.personDiplomaContainer}>

@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { loginUser } from "./loginUser"; 
+import { loginUser } from "./loginUser";
 
 class LoginStore {
   inpData = {
@@ -12,7 +12,7 @@ class LoginStore {
     passwordErr: "",
   };
 
-  userData = ""; 
+  userData = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -39,12 +39,15 @@ class LoginStore {
       this.validateData();
 
       if (!Object.values(this.inpDataErr).some((i) => i !== "")) {
-        this.userData = await loginUser(
-          this.inpData.login,
-          this.inpData.password
-        );
-        console.log("Пользователь успешно вошел:", this.userData);
-        navigateCallback("/check");
+
+        this.userData = await loginUser(this.inpData.login, this.inpData.password);
+        console.log('Пользователь успешно вошел:', this.userData);
+
+        // Сохранение токена в localStorage
+        localStorage.setItem('accessToken', this.userData);
+
+        navigateCallback("/person");
+
       }
     } catch (error) {
       console.error('Ошибка при входе:', error);

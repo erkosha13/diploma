@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { Button } from "../../shared/ui/Button/Button";
 import s from "./header.module.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LanguageSelect from "./components/LanguageSelect/LanguageSelect";
 
 const handleChange = (value: string) => {
@@ -10,16 +10,16 @@ const handleChange = (value: string) => {
 };
 
 export const Header = observer(() => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const isMainPage = location.pathname === "/";
+
+  const hasAccessToken = !!localStorage.getItem("accessToken"); // Assuming accessToken is stored in localStorage
 
   const handleGoToSignUp = () => {
     navigate("/Login");
   };
 
-  const handleGoHome = () => {
-    navigate("/");
+  const handleGoToPerson = () => {
+    navigate("/person");
   };
 
   return (
@@ -36,12 +36,16 @@ export const Header = observer(() => {
               <LanguageSelect defaultValue="KZ" handleChange={handleChange} />
             </div>
             <div className={s.registration}>
-              <Button
-                className={s.button}
-                onClick={isMainPage ? handleGoToSignUp : handleGoHome}
-              >
-                {isMainPage ? "Sign Up / Log In" : "Home"}
-              </Button>
+              {hasAccessToken && (
+                <Button className={s.button} onClick={handleGoToPerson}>
+                  Profile
+                </Button>
+              )}
+              {!hasAccessToken && (
+                <Button className={s.button} onClick={handleGoToSignUp}>
+                  "Sign Up / Log In"
+                </Button>
+              )}
             </div>
           </div>
         </div>

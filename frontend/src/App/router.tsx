@@ -1,6 +1,5 @@
 import Footer from "../components/Footer/Footer";
 import { Header } from "../components/Header/header";
-import { GenerateDiploma } from "../pages/GenerateDiploma/GenerateDiploma";
 
 import MainPage from "../pages/MainPage/mainPage";
 import PersonPage from "../pages/PersonPage/PersonPage";
@@ -17,9 +16,11 @@ function Router() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path={"/person"} element={<PersonPage />} />
+
         <Route path={"/Login"} element={<LogInPage />} />
         <Route path={"/SignUp"} element={<SignUpPage />} />
-        <Route path={"/check"} element={<GenerateDiploma />} />
+     
+
       </Routes>
       <Footer />
     </>
