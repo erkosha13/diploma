@@ -8,7 +8,8 @@ import { registStore } from "../../../store/regist-store";
 import { autorun } from "mobx";
 
 export const Login = observer(() => {
-  const { inpData, inpDataErr, updateInpData, clearData, clickHandler } = loginStore;
+  const { inpData, inpDataErr, updateInpData, clearData, clickHandler } =
+    loginStore;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +24,9 @@ export const Login = observer(() => {
   const handleClick = () => {
     clickHandler(navigate);
   };
+  const handleGoToSignUp = () => {
+    navigate("/SignUp");
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -36,6 +40,13 @@ export const Login = observer(() => {
 
   return (
     <div className={s.loginContent}>
+      <div className={s.registrationButton}>
+        <span>Создание нового аккаунта</span>
+        <Button onClick={handleGoToSignUp} className={s.button}>
+          -&gt;~
+        </Button>
+      </div>
+
       <div className={s.loginTitle}>
         <h1>Sign in to Website</h1>
       </div>
@@ -44,9 +55,7 @@ export const Login = observer(() => {
           <input
             name="login"
             type="text"
-            onChange={(e) =>
-              updateInpData(e.target.name, e.target.value)
-            }
+            onChange={(e) => updateInpData(e.target.name, e.target.value)}
             placeholder="Username"
             value={inpData.login}
             maxLength={20}
@@ -58,9 +67,7 @@ export const Login = observer(() => {
           <input
             name="password"
             type="password"
-            onChange={(e) =>
-              updateInpData(e.target.name, e.target.value)
-            }
+            onChange={(e) => updateInpData(e.target.name, e.target.value)}
             placeholder="Password"
             value={inpData.password}
             maxLength={20}

@@ -15,7 +15,7 @@ export const Header = observer(() => {
   const isMainPage = location.pathname === "/";
 
   const handleGoToSignUp = () => {
-    navigate("/modal");
+    navigate("/Login");
   };
 
   const handleGoHome = () => {

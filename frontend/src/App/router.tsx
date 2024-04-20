@@ -4,9 +4,12 @@ import { GenerateDiploma } from "../pages/GenerateDiploma/GenerateDiploma";
 
 import MainPage from "../pages/MainPage/mainPage";
 import PersonPage from "../pages/PersonPage/PersonPage";
-import { LoginSignUp } from "../pages/Register/LoginSignUp";
+import { LogInPage } from "../pages/Register/login/LogInPage";
+import { SignUpPage } from "../pages/Register/signUp/signUpPage";
 import "./router.scss";
+
 import { Route, Routes } from "react-router-dom";
+
 function Router() {
   return (
     <>
@@ -14,7 +17,8 @@ function Router() {
       <Routes>
         <Route path={"/"} element={<MainPage />} />
         <Route path={"/person"} element={<PersonPage />} />
-        <Route path={"/modal"} element={<LoginSignUp />} />
+        <Route path={"/Login"} element={<LogInPage />} />
+        <Route path={"/SignUp"} element={<SignUpPage />} />
         <Route path={"/check"} element={<GenerateDiploma />} />
       </Routes>
       <Footer />

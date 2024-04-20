@@ -39,8 +39,11 @@ class LoginStore {
       this.validateData();
 
       if (!Object.values(this.inpDataErr).some((i) => i !== "")) {
-        this.userData = await loginUser(this.inpData.login, this.inpData.password);
-        console.log('Пользователь успешно вошел:', this.userData);
+        this.userData = await loginUser(
+          this.inpData.login,
+          this.inpData.password
+        );
+        console.log("Пользователь успешно вошел:", this.userData);
         navigateCallback("/check");
       }
     } catch (error) {
